@@ -61,16 +61,27 @@
           "target": "home"
         },
         {
-          "pattern": "customer/{customerId}",
-          "name": "customer",
-          "target": "customer"
+          "pattern": "expert",
+          "name": "expert",
+          "target": "expert"
         },
         {
-          "pattern": "createCustomer",
-          "name": "createCustomer",
-          "target": "createCustomer"
+          "pattern": "createExpert",
+          "name": "createExpert",
+          "target": "createExpert"
+        },
+        {
+          "pattern": "label",
+          "name": "label",
+          "target":"label"
+        },
+        {
+          "pattern": "createLabel",
+          "name":"createLabel",
+          "target":"createLabel"
         }
         
+      
       ],
       "targets": {
         "home": {
@@ -80,16 +91,28 @@
           "viewLevel": 1
         },
         "customer": {
-          "viewId": "customer",
-          "viewName": "customer",
+          "viewId": "expert",
+          "viewName": "expert",
           "controlId": "app",
           "viewLevel": 2
         },
-        "createCustomer": {
-          "viewId": "createCustomer",
-          "viewName": "createCustomer",
+        "createExpert": {
+          "viewId": "createExpert",
+          "viewName": "createExpert",
           "controlId": "app",
           "viewLevel": 2
+        },
+        "label": {
+          "viewId": "label",
+          "viewName": "label",
+          "controlId": "app",
+          "viewLevel": 2
+        },
+        "createLabel": {
+            "viewId": "createLabel",
+            "viewName": "createLabel",
+            "controlId": "app",
+            "viewLevel": 2
         }
       }
     }
