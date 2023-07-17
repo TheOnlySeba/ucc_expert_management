@@ -26,100 +26,17 @@ sap.ui.define([
 			this.LIQUIDATIONFLAG = false;
 		},
 
-		// initializeUModel: function () {
-		// 	var oSettingsModel = this.getSettingsModel();
-		// 	var that = this;
-		// 	var translator = this.getView().getModel("i18n").getResourceBundle();
-		// 	oSettingsModel.attachRequestCompleted(function () {
-		// 		var serviceURL = this.getProperty("/oDataUrl");
-		// 		oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
-		// 		oModeloData = oModel;
-		// 		oModel.callFunction("/GetUname", {
-		// 			"method": "GET",
+		initializeUModel: function () {
+			var oSettingsModel = this.getSettingsModel();
+			var that = this;
+			var translator = this.getView().getModel("i18n").getResourceBundle();
+			oSettingsModel.attachRequestCompleted(function () {
+				var serviceURL = this.getProperty("/oDataUrl");
+				oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+				oModeloData = oModel;
 
-		// 			success: function (oData, oResponse) {
-		// 				var oUserModel = new sap.ui.model.json.JSONModel();
-		// 				oUserModel.setData(oData);
-		// 				that.getView().setModel(oUserModel, "userModel");
-
-		// 				userId = oData.UId;
-		// 				isAuthorized = oData.isAuthorized;
-
-		// 				if (!oData.isAuthorized) {
-		// 					// user have to set new password --> call dialog-window
-		// 					that.initializePassword();
-		// 				}
-		// 			},
-		// 			error: function (oError) {
-		// 				sap.m.MessageToast.show(translator.getText("noMatches"));
-		// 			}
-		// 		});
-		// 	});
-		// },
-
-		// initializePassword: function () {
-		// 	if (!this._passwortDialog) {
-		// 		this._passwortDialog = sap.ui.xmlfragment("iService_UI5.fragment.DialogResetPasswort", this);
-		// 		this._passwortDialog.setModel(this.getView().getModel("md"), "md");
-		// 		this.getView().addDependent(this._passwortDialog);
-		// 	}
-
-		// 	var translator = this.getView().getModel("i18n").getResourceBundle();
-
-		// 	// open dialog, set ValueStates to null, change title, forbid to close the window via escape- or 'Abbrechen'-button.
-		// 	this._passwortDialog.open();
-		// 	this._passwortDialog.setTitle(translator.getText("ChangePassFromInit"));	// change the title from default one
-		// 	this._passwortDialog.getAggregation("content")[1].setValueState("None");	// set value states to all input-fields
-		// 	this._passwortDialog.getAggregation("content")[3].setValueState("None");
-		// 	this._passwortDialog.getAggregation("content")[5].setValueState("None");
-		// 	this._passwortDialog.setEscapeHandler(null);								// disable exit from window by clicking on escape-button or 'Cancel'-Button
-		// 	this._passwortDialog.onsapescape = null;
-		// 	this._passwortDialog.destroyEndButton();
-		// 	this._passwortDialog.getAggregation("content")[7].setEnabled(false);		// disable and hide the 'Cancel'-Button
-		// 	this._passwortDialog.getAggregation("content")[7].setVisible(false);
-		// },
-
-		// onResetButton: function () {
-		// 	var that = this;
-		// 	var oldPassword = this._passwortDialog.getAggregation("content")[1].getValue();
-		// 	var password1 = this._passwortDialog.getAggregation("content")[3].getValue();
-		// 	var password2 = this._passwortDialog.getAggregation("content")[5].getValue();
-		// 	var translator = this.getView().getModel("i18n").getResourceBundle();
-		// 	if (this.isCorrectPasswords(that, oldPassword, password1, password2)) {
-		// 		var that = this;
-
-		// 		oModeloData.callFunction("/ResetPasswort", {
-		// 			"method": "POST",
-		// 			urlParameters: {
-		// 				user: userId,
-		// 				oldPass: oldPassword,
-		// 				pass1: password1,
-		// 				pass2: password2
-		// 			},
-		// 			success: function (oData, oResponse) {
-		// 				MessageToast.show(translator.getText("passChangeSuccess"));
-		// 				that._passwortDialog.close();
-		// 			},
-		// 			error: function (oError) {
-		// 				MessageToast.show(translator.getText("passChangeError") + JSON.parse(oError.responseText).error.message.value);
-		// 				console.log(oError);
-		// 			}
-		// 		});
-		// 	}
-		// },
-
-		// isCorrectPasswords: function (that, oldPassword, password1, password2) {
-		// 	var translator = this.getView().getModel("i18n").getResourceBundle();
-		// 	if (password1.trim() != password2.trim() ||
-		// 		password1.trim().length < 6 ||
-		// 		password1.trim().length > 8) {
-		// 		that._passwortDialog.getAggregation("content")[3].setValueState("Error");
-		// 		that._passwortDialog.getAggregation("content")[5].setValueState("Error");
-		// 		MessageToast.show(translator.getText("enterValidPass"));
-		// 		return false;
-		// 	}
-		// 	return true;
-		// },
+			});
+		},
 
 		getSettingsModel: function () {
 			var sPath = $.sap.getModulePath("iService_UI5", "/model/applicationProperties.json");
