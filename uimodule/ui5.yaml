@@ -53,5 +53,5 @@ builder:
           package: Z_ISERVICES_V3
           bspContainer: Z_SOLMAN_V3
           bspContainerText: x
-          transportNo: Z04K900583
+          transportNo: Z04K900693
           calculateApplicationIndex: true
