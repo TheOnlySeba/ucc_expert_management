@@ -1,0 +1,163 @@
+{
+  "sap.app": {
+    "_version": "1.1.0",
+    "id": "iService_UI5",
+    "type": "application",
+    "applicationVersion": {
+      "version": "1.1.0"
+    },
+    "title": "Main Monitor"
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "iService_UI5.view.main",
+      "type": "XML",
+      "async": true
+    },
+    "models": {
+      "Settings": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/applicationProperties.json",
+        "preload": true
+      },
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "iService_UI5.i18n.i18n"
+        }
+      },
+      "allocationCreate": {
+          "type": "sap.ui.model.json.JSONModel",
+          "uri": "model/allocationCreate.json",
+          "preload": true,
+          "settings": {}
+      },
+      "columnsModel": {
+          "type": "sap.ui.model.json.JSONModel",
+          "uri": "model/columnsModel.json",
+          "preload": true,
+          "settings": {}
+      },
+      "contractCreate": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/contractCreate.json",
+        "preload":true,
+        "settings":{}
+      }
+    },
+    "routing": {
+      "config": {
+        "viewPath": "iService_UI5.view",
+        "controlAggregation": "pages",
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "transition": "slide",
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "home",
+          "target": "home"
+        },
+        {
+          "pattern": "customer/{customerId}",
+          "name": "customer",
+          "target": "customer"
+        },
+        {
+          "pattern": "createCustomer",
+          "name": "createCustomer",
+          "target": "createCustomer"
+        },
+        {
+          "pattern": "systemAllocation",
+          "name": "systemAllocation",
+          "target": "systemAllocation"
+        },
+        {
+          "pattern": "productOverview",
+          "name": "productOverview",
+          "target": "productOverview"
+        },
+        {
+          "pattern": "productOptions",
+          "name": "productOptions",
+          "target": "productOptions"
+        },
+        {
+          "pattern": "customer/{customerId}/user/{userId}",
+          "name": "user",
+          "target": "user"
+        },
+        {
+          "pattern": "customer/{customerId}/createUser",
+          "name": "createUser",
+          "target": "createUser"
+        },
+        {
+          "pattern":"contractAllocation",
+          "name": "contractAllocation",
+          "target": "contractAllocation"
+        }
+
+      ],
+      "targets": {
+        "home": {
+          "viewId": "main",
+          "viewName": "main",
+          "controlId": "app",
+          "viewLevel": 1
+        },
+        "customer": {
+          "viewId": "customer",
+          "viewName": "customer",
+          "controlId": "app",
+          "viewLevel": 2
+        },
+        "createCustomer": {
+          "viewId": "createCustomer",
+          "viewName": "createCustomer",
+          "controlId": "app",
+          "viewLevel": 2
+        },
+        "user": {
+          "viewId": "user",
+          "viewName": "user",
+          "controlId": "app",
+          "viewLevel": 3
+        },
+        "createUser": {
+          "viewId": "createUser",
+          "viewName": "createUser",
+          "controlId": "app",
+          "viewLevel": 3
+        },
+        "systemAllocation": {
+          "viewId": "systemAllocation",
+          "viewName": "systemAllocation",
+          "controlId": "app",
+          "viewLevel": 2
+        },
+        "productOverview": {
+          "viewId": "productOverview",
+          "viewName": "productOverview",
+          "controlId": "app",
+          "viewLevel": 2
+        },
+        "productOptions": {
+          "viewId": "productOptions",
+          "viewName": "productOptions",
+          "controlId": "app",
+          "viewLevel": 2
+        },
+        "contractAllocation": {
+          "viewId": "contractAllocation",
+          "viewName":"contractAllocation",
+          "controlId": "app",
+          "viewLevel":2
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,187 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:t="sap.ui.table"
+	xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc">
+	<VBox alignItems="Stretch" alignContent="SpaceAround"
+		justifyContent="SpaceAround" id="infoBox">
+		<HBox>
+			<items>
+			<!-- width="37rem" -->
+				<Panel id="stammdatenPanel" height="100%">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+					<content>
+					
+					<!-- Stammdaten -->
+					
+						<Label text="{i18n>hUser}" labelFor="HUserInput"
+							design="Bold" />
+						<Input id="HUserInput" type="Text"
+							placeholder="{i18n>hUser}" editable="false" value="{/MUser}">
+						</Input>
+						<Label text="{i18n>salutation}" labelFor="AnredeBox" />
+						<ComboBox id="AnredeBox" width="100%" placeholder="{i18n>salutation}"
+							required="true" editable="false" items="{md>/AnredeSet}"
+							selectedKey="{/Anrede}" valueState="None"
+							valueStateText="{i18n>fieldCannotBeEmpty}">
+							<core:Item key="{md>TITLE}" text="{md>TITLE_MEDI}" />
+						</ComboBox>
+						<Label text="{i18n>title}" labelFor="TitelBox" />
+						<ComboBox id="TitelBox" width="100%" placeholder="{i18n>title}"
+							required="false" editable="false" items="{md>/TitelSet}"
+							selectedKey="{/Titel}">
+							<core:Item key="{md>TITLE_KEY}" text="{md>TITLE_TEXT}" />
+						</ComboBox>
+						<Label text="{i18n>firstName}" labelFor="VornameInput" />
+						<Input id="VornameInput" type="Text" placeholder="{i18n>firstName}" maxLength="40"
+							required="true" editable="false" value="{/Vorname}" valueState="None"
+							valueStateText="{i18n>fieldCannotBeEmpty}">
+						</Input>
+						<Label text="{i18n>lastName}" labelFor="NachnameInput" />
+						<Input id="NachnameInput" type="Text" placeholder="{i18n>lastName}" maxLength="40"
+							required="true" editable="false" value="{/Nachname}" valueState="None"
+							valueStateText="{i18n>fieldCannotBeEmpty}">
+						</Input>
+						<Label text="{i18n>userUnit}" labelFor="EinhostInput" />
+						<Input id="EinhostInput" type="Text" placeholder="{i18n>userUnit}" maxLength="40"
+							required="false" editable="false" value="{/Einhost}">
+						</Input>
+						<Label text="{i18n>fieldOfStudy}" labelFor="FachrichtungBox" />
+						<ComboBox id="FachrichtungBox" width="100%" placeholder="{i18n>fieldOfStudy}"
+							required="true" editable="false" items="{md>/FachrichtungSet}"
+							selectedKey="{/Fachrichtung}" valueState="None"
+							valueStateText="{i18n>fieldCannotBeEmpty}">
+							<core:Item key="{md>ABTNR}" text="{md>BEZ20}" />
+						</ComboBox>
+						<Label text="{i18n>specialisation}" labelFor="SpezialisierungBox" />
+						<ComboBox id="SpezialisierungBox" width="100%" placeholder="{i18n>specialisation}"
+							required="true" editable="false" items="{md>/SpezialisierungSet}"
+							selectedKey="{/Spezialisierung}" valueState="None"
+							valueStateText="{i18n>fieldCannotBeEmpty}">
+							<core:Item key="{md>PAFKT}" text="{md>BEZ30}" />
+						</ComboBox>
+						<Label text="{i18n>sUser}" labelFor="SUserInput" />
+						<Input id="SUserInput" type="Text" placeholder="{i18n>sUser}" maxLength="11"
+							required="false" editable="false" value="{/SUser}">
+						</Input>
+						<!-- <CheckBox text="{i18n>newsletter}" id="Newsletter" editable="false" valueState="None" selected="{/Newsletter}" /> -->
+						<!-- <Input id="SUserInput" type="Text" placeholder="{i18n>sUser}" maxLength="11"
+							required="false" editable="false" value="{/SUser}"> 
+						</Input>		-->
+					</content>
+				</Panel>
+				
+				<!-- class="sapUiResponsiveMargin" displayFormat="short valueFormat="yyyy-MM-dd" -->
+				<!-- width="37rem" -->
+				
+				<Panel id="adresskontaktdatenPanel" height="100%">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+					<content>
+					
+					<!-- Adressdaten + Kontaktdaten -->
+					
+						<Label text="{i18n>street}" labelFor="StrasseInput" />
+						<Input id="StrasseInput" type="Text" placeholder="{i18n>street}"
+							required="true" editable="false" value="{/Strasse}" maxLength="60"
+							valueState="None" valueStateText="{i18n>fieldCannotBeEmpty}">
+						</Input>
+						<Label text="{i18n>houseNumber}" labelFor="HausnumerInput" />
+						<Input id="HausnumerInput" type="Text" editable="false" maxLength="10"
+							required="true" placeholder="{i18n>houseNumber}" value="{/Hausnummer}"
+							valueState="None" valueStateText="{i18n>fieldCannotBeEmpty}">
+						</Input>
+						<Label text="{i18n>postCode}" labelFor="PLZInput" />
+						<Input id="PLZInput" type="Text" placeholder="{i18n>postCode}"
+							required="true" editable="false" value="{/PLZ}"
+							valueState="None" valueStateText="{i18n>fieldCannotBeEmpty}">
+						</Input>
+						<Label text="{i18n>city}" labelFor="OrtInput" />
+						<Input id="OrtInput" type="Text" placeholder="{i18n>city}" maxLength="40"
+							required="true" editable="false" value="{/Ort}" valueState="None"
+							valueStateText="{i18n>fieldCannotBeEmpty}">
+						</Input>
+						<Label text="{i18n>country}" labelFor="LandBox" />
+						<ComboBox id="LandBox" width="100%" items="{md>/LandSet}"
+							placeholder="{i18n>country}" editable="false" change="countryChange"
+							required="true" selectedKey="{/Land}" valueState="None"
+							valueStateText="{i18n>fieldCannotBeEmpty}">
+							<core:Item key="{md>Land1}" text="{md>Landx}" />
+						</ComboBox>
+						<Label text="{i18n>phone}" labelFor="TelefonInput" />
+						<Input id="TelefonInput" type="Tel" placeholder="{i18n>phone}" maxLength="20"
+							required="true" editable="false" value="{/Telefon}" valueState="None"
+							valueStateText="{i18n>fieldCannotBeEmpty}">
+						</Input>
+						
+						<Label text="Fax" labelFor="FaxInput" />
+						<Input id="FaxInput" type="Tel" placeholder="Fax" maxLength="40"
+							required="false" editable="false" value="{/Fax}">
+						</Input>
+						<Label text="{i18n>mobile}" labelFor="MobilInput" />
+						<Input id="MobilInput" type="Tel" placeholder="{i18n>mobile}" maxLength="20"
+							required="false" editable="false" value="{/Mobil}">
+						</Input>
+						<Label text="E-mail" labelFor="EmailInput" />
+						<Input id="EmailInput" type="Email" placeholder="E-mail" maxLength="200"
+							required="true" editable="false" value="{/Email}" valueState="None"
+							valueStateText="{i18n>fieldCannotBeEmpty}">
+						</Input>
+					</content>
+				</Panel>
+			</items>
+		</HBox>
+
+		<HBox>
+			<items>
+				<Panel id="rollenPanel" width="37rem" height="100%">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+					<content>
+			
+					<!-- Rollen -->
+					
+					<Label id="Partnertype" text="{i18n>rolls}" tooltip="{i18n>rollsHelp}"
+						required="true" />
+					
+						<VBox>
+							<CheckBox text="SAP-L, {i18n>contractContact}" id="SAP-L" editable="false" valueState="None" selected="{/L}" />
+							<CheckBox text="SAP-R, {i18n>billingContact}" id="SAP-R" editable="false" valueState="None" selected="{/R}" />
+							<CheckBox text="SAP-A, {i18n>centralContact}" id="SAP-A" editable="false" valueState="None" selected="{/A}" />
+							<CheckBox text="SAP-V, {i18n>representCentralContact}" id="SAP-V" editable="false" valueState="None" selected="{/V}" />
+							<CheckBox text="SAP-D, {i18n>lecturer}" id="SAP-D" editable="false" valueState="None" selected="{/D}" />
+							<CheckBox text="SAP-T, {i18n>technicalContact}" id="SAP-T" editable="false" valueState="None" selected="{/T}" />
+							<CheckBox text="SAP-P, {i18n>sponsor}" id="SAP-P" editable="false" valueState="None" selected="{/P}" />
+						</VBox>
+					
+					</content>
+				</Panel>
+
+				<Panel id="passwortPanel" width="37rem" height="100%">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+					<content>
+					
+					<!-- Passwort -->
+					
+						<Label text="{i18n>password}" labelFor="PasswortInput" />
+						<Input id="PasswortInput" type="Password" placeholder="{i18n>passwordHelp}"
+								required="true" editable="false" valueState="None" maxLength="8"
+								valueStateText="{i18n>invalidPassword}">
+						</Input>
+						<Label text="{i18n>repeatPassword}" labelFor="PasswortWiederholenInput" />
+						<Input id="PasswortWiederholenInput" type="Password"
+								placeholder="{i18n>repeatPasswordHelp}" required="true" editable="false"
+								valueState="None" valueStateText="{i18n>invalidPassword}" maxLength="8">
+						</Input>
+					</content>
+				</Panel>
+
+			</items>
+		</HBox>
+		
+	</VBox>
+</core:FragmentDefinition>

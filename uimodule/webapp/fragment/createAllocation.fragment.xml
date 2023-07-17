@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Dialog id="createAllocationDialog"
+        title="{i18n>newAllocation}">
+        <HBox>
+            <items>
+                <Panel>
+                    <f:SimpleForm editable="true"
+                        layout="ResponsiveGridLayout"
+                        id="allocationform"
+                        binding="{allocationCreate>/Allocation}">
+                        <f:content>
+                            <Label text="{i18n>partnerId}"
+                                labelFor="InputPartnerId"
+                                visible="true" />
+                            <ComboBox id="PartnerId"
+                                required="true"
+                                visible="true"
+                                selectionChange="onChange"
+                                >
+                            </ComboBox>
+                             <Label text="{i18n>productOptId}"
+                                labelFor="ProduktOptId" />
+                            <ComboBox id="ProduktOptId"
+                                required="true"
+                                placeholder=""
+                                selectionChange="fetchMandantenSet"
+                                >
+                            </ComboBox>
+                            <Label text="{i18n>mandant}"
+                                labelFor="InputMandant" />
+                           <ComboBox id="Mandant"
+                                required="true"
+                                placeholder=""
+                                >
+                            </ComboBox>
+                            <Label text="{i18n>comment}"
+                                labelFor="SComment" />
+                            <TextArea id="SComment"
+                                value="{allocationCreate>SComment}"
+                                growing="true"
+                                class="sapUiSmallMarginBottom"
+                                editable="true"
+                                maxLength="300" />
+                        </f:content>
+                    </f:SimpleForm>
+                </Panel>
+            </items>
+        </HBox>
+        <beginButton>
+            <Button text="{i18n>createBtn}"
+                press="onCreateAllocation"
+                type="Accept" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>cancelBtn}"
+                press="onCancelAllocation"
+                type="Reject" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

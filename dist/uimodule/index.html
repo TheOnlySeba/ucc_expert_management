@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+    <title>iServices v.3 UI5</title>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js" id="sap-ui-bootstrap" data-sap-ui-theme="sap_belize_plus" data-sap-ui-bindingSyntax="complex"
+    data-sap-ui-async="true" data-sap-ui-compatVersion="edge" data-sap-ui-frameOptions="trusted" data-sap-ui-resourceroots='{"iService_UI5": "./"}'>
+        </script>
+
+    <script>
+
+        sap.ui.getCore().attachInit(function () {
+            sap.ui.require([
+                "sap/m/Shell",
+                "sap/ui/core/ComponentContainer"
+            ], function (Shell, ComponentContainer) {
+                new Shell({
+                    app: new ComponentContainer({
+                        name: "iService_UI5",
+                        settings: {
+                            id: "webapp"
+                        }
+                    })
+                }).placeAt("content");
+            });
+        });
+
+    </script>
+
+    <style type="text/css">
+        .noScroll {
+            overflow: hidden !important;
+        }
+
+        section#__page0-cont {
+            height: auto !important;
+        }
+
+        .noPadding {
+            padding: 0 0 0 0 !important;
+        }
+    </style>
+
+</head>
+
+<body class="sapUiBody noScroll" role="application" id="content">
+
+</body>
+
+</html>

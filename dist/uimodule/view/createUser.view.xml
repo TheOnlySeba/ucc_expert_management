@@ -1,0 +1,32 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	controllerName="iService_UI5.controller.createUser">
+
+	<Page title="iServices"
+		class="sapUiContentPadding"
+		enableScrolling="true"
+		showHeader="false">
+
+		<content>
+
+			<!-- <l:VerticalLayout id="Userdaten" /> -->
+			<Panel>
+				<Label text="{i18n>mandatoryFields}" />
+
+				<!-- Here will be placed customer-info from fragment ("user.fragment.xml") -->
+				<l:VerticalLayout id="Userdaten" />
+
+				<VBox id="buttonsVBox"
+					fitContainer="true">
+					<Button text="{i18n>create}"
+						id="anlegenButton"
+						type="Accept"
+						press="onCreate"
+						icon="sap-icon://add-employee"
+						visible="true" />
+				</VBox>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>

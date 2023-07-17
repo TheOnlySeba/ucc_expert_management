@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+				xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout"
+				xmlns:mvc="sap.ui.core.mvc" >
+	<SelectDialog
+		title="{i18n>hostedBy}"
+		class="sapUiPopupWithPadding"
+		items="{md>/ClientDialogSet}"
+		search="_handleValueHelpSearch"
+		confirm="_handleValueHelpClose"
+		cancel="_handleValueHelpClose">
+		<StandardListItem
+			title="{md>Partner}"
+			description="{md>NAME1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,57 @@
+specVersion: "2.2"
+metadata:
+  name: z_solman_v3
+type: application
+resources:
+  configuration:
+    paths:
+      webapp: uimodule/webapp
+framework:
+  name: SAPUI5
+  version: 1.91.0
+  libraries:
+    - name: sap.ui.core
+    - name: sap.m
+    - name: sap.ui.unified
+    - name: sap.ui.layout
+    - name: sap.ui.table
+    - name: themelib_sap_belize
+server:
+  customMiddleware:
+    - name: ui5-middleware-livereload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: uimodule/webapp
+    - name: ui5-middleware-route-proxy
+      afterMiddleware: compression
+      configuration:
+        debug: false
+        /sap/opu/odata/sap/:
+          target: http://z04lp1.informatik.tu-muenchen.de:8004/
+          auth:
+            fromEnv: false
+            user: "Awesome-User"
+            pass: "Awesome-PW"
+            client: 101
+builder:
+  customTasks:
+    - name: ui5-task-nwabap-deployer
+      afterTask: generateVersionInfo
+      configuration:
+        resources:
+          path: dist/uimodule
+          pattern: "**/*.*"
+        connection:
+          server: http://z04lp1.informatik.tu-muenchen.de:8004/
+          client: 101
+        authentication:
+          user: "Awesome-User"
+          password: "Awesome-PW"
+        ui5:
+          language: EN
+          package: Z_ISERVICES_V3
+          bspContainer: Z_SOLMAN_V3
+          bspContainerText: x
+          transportNo: Z04K900583
+          calculateApplicationIndex: true

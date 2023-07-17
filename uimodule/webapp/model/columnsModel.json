@@ -1,0 +1,12 @@
+{
+  "cols": [
+    {
+      "label": "Partner Id",
+      "template": "ProductId"
+    },
+    {
+      "label": "Partner Name",
+      "template": "Name"
+    }
+  ]
+}

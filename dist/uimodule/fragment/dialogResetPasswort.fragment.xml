@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+				xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout"
+				xmlns:mvc="sap.ui.core.mvc" >
+	<Dialog
+		title="{i18n>resetPassword}"
+		class="sapUiPopupWithPadding">
+		<content>
+ 			<Label text="{i18n>oldPassword}" labelFor="OldPasswortInput" />
+			<Input id="OldPasswortInput" type="Password" placeholder="{i18n>oldPasswordHelp}"
+					required="true" editable="true" visible="true" valueState="None" maxLength="8"
+					valueStateText="{i18n>invalidPassword}">
+			</Input>
+
+			<Label text="{i18n>password}" labelFor="ResetPasswortInput" />
+			<Input id="ResetPasswortInput" type="Password" placeholder="{i18n>passwordHelp}"
+					required="true" editable="true" valueState="None" maxLength="8"
+					valueStateText="{i18n>invalidPassword}">
+			</Input>
+			
+			<Label text="{i18n>repeatPassword}" labelFor="ResetPasswortWiederholenInput" />
+			<Input id="ResetPasswortWiederholenInput" type="Password"
+					placeholder="{i18n>repeatPasswordHelp}" required="true" editable="true"
+					valueState="None" valueStateText="{i18n>invalidPassword}" maxLength="8">
+			</Input>
+			
+			<Button text="{i18n>restore}" icon="sap-icon://reset" press="onResetButton" type="Emphasized">
+				<layoutData>
+					<FlexItemData growFactor="0.05" />
+				</layoutData>
+			</Button>
+			<Button text="{i18n>cancel}" icon="sap-icon://decline" press="onCancelButton" type="Ghost">
+				<layoutData>
+					<FlexItemData growFactor="0.05" />
+				</layoutData>
+			</Button>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

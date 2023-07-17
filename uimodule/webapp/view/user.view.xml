@@ -1,0 +1,95 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	controllerName="iService_UI5.controller.user">
+
+	<Page title="iServices"
+		class="sapUiContentPadding"
+		enableScrolling="true"
+		showHeader="false">
+
+		<content>
+
+			<!-- <l:VerticalLayout id="Kundendaten" /> -->
+			<Panel>
+				<Label text="{i18n>mandatoryFields}" />
+
+				<!-- Here will be placed customer-info from fragment ("user.fragment.xml") -->
+				<l:VerticalLayout id="Userdaten" />
+
+				<HBox id="buttonsHBox"
+					fitContainer="true">
+					<Button text="{i18n>edit}"
+						id="aendernButton"
+						press="changeData"
+						icon="sap-icon://edit"
+						visible="true">
+						<layoutData>
+							<FlexItemData growFactor="0.05" />
+						</layoutData>
+					</Button>
+					<Button text="{i18n>save}"
+						id="sichernButton"
+						icon="sap-icon://save"
+						type="Accept"
+						press="saveData"
+						visible="{= ${/STATUS} === 'aktiv'}">
+						<layoutData>
+							<FlexItemData growFactor="0.05" />
+						</layoutData>
+					</Button>
+					<Button text="{i18n>cancel}"
+						id="abbrechenButton"
+						icon="sap-icon://decline"
+						press="cancelChanges"
+						visible="false">
+						<layoutData>
+							<FlexItemData growFactor="0.05" />
+						</layoutData>
+					</Button>
+					<Button text="{i18n>delete}"
+						id="loeschenButton"
+						icon="sap-icon://delete"
+						press="deleteData"
+						type="Reject"
+						visible="{= ${/STATUS} === 'aktiv'}">
+						<layoutData>
+							<FlexItemData growFactor="0.05" />
+						</layoutData>
+					</Button>
+					<Button text="{i18n>restore}"
+						id="wiedererstellenButton"
+						icon="sap-icon://synchronize"
+						press="reviveData"
+						type="Ghost"
+						visible="{= ${/STATUS} === 'gelöscht'}">
+						<layoutData>
+							<FlexItemData growFactor="0.05" />
+						</layoutData>
+					</Button>
+					<Button text="{i18n>activate}"
+						id="aktivierenButton"
+						icon="sap-icon://activate"
+						press="activateData"
+						type="Emphasized"
+						visible="{= ${/STATUS} === 'im Anschluss'}">
+						<layoutData>
+							<FlexItemData growFactor="0.05" />
+						</layoutData>
+					</Button>
+					<Button text="{i18n>resetPassword}"
+						id="passwordResetButton"
+						type="Ghost"
+						press="resetPasswort"
+						icon="sap-icon://synchronize"
+						visible="{= ${/STATUS} === 'aktiv'}">
+						<layoutData>
+							<FlexItemData growFactor="0.05" />
+						</layoutData>
+					</Button>
+				</HBox>
+			</Panel>
+
+		</content>
+	</Page>
+</mvc:View>

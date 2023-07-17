@@ -1,0 +1,108 @@
+<mvc:View xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	height="100%"
+	controllerName="iService_UI5.controller.App">
+	<Page title="{i18n>welcome} {userModel>/Uname}"
+		class=" sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer">
+		<headerContent>
+			<Label text="{i18n>loggedOnAs} {userModel>/Utext}" />
+		</headerContent>
+		<subHeader>
+			<OverflowToolbar>
+				<Button icon="sap-icon://study-leave"
+					type="Ghost"
+					text="{i18n>myInstitution}"
+					press="navigateToSelfInstitution"
+					tooltip="{=${userModel>/UInst}}" />
+				<Button icon="sap-icon://customer"
+					type="Ghost"
+					text="{i18n>myUser}"
+					press="navigateToSelfUser"
+					tooltip="{=${userModel>/UId}}" />
+				<Button icon="sap-icon://business-card"
+					type="Ghost"
+					text="{i18n>ourPartners}"
+					visible="{=${userModel>/UCC}}"
+					id="navToPart" />
+				<Button id="onNavHomeButton"
+					type="Ghost"
+					icon="sap-icon://company-view"
+					text="{i18n>customerOverview}"
+					press="onNavHome"
+					visible="true" />
+				<Button id="onNavContractsButton"
+					type="Ghost"
+					icon="sap-icon://customer-order-entry"
+					text="{i18n>contractOverview}"
+					press="onNavContract"
+					 />
+				<Button id="createCustomerButton"
+					type="Ghost"
+					icon="sap-icon://add"
+					text="{i18n>createCustomer}"
+					press="createCustomer"
+					visible="{=${userModel>/UCC}}" />
+				<Button id="onNavCustomerButton"
+					type="Ghost"
+					text="{i18n>institution}"
+					icon="sap-icon://building"
+					press="onNavCustomer"
+					visible="false" />
+				<Button id="createUserButton"
+					type="Ghost"
+					icon="sap-icon://add"
+					text="{i18n>registerUser}"
+					press="createUser"
+					visible="false" />
+				<ToolbarSpacer />
+				<Button icon="sap-icon://disconnected"
+					text="{i18n>systemOverview}"
+					type="Ghost"
+					id="onNavSystemAllocationButton"
+					press="onNavSystemAllocation" />
+				<MenuButton visible="{=${userModel>/UCC}}"
+					text="{i18n>sapProducts}"
+					type="Ghost"
+					icon="sap-icon://product">
+					<menu>
+						<Menu>
+							<MenuItem icon="sap-icon://manager-insight"
+								text="{i18n>productOverview}"
+								visible="{=${userModel>/UCC}}"
+								id="onNavProductOverviewButton"
+								press="onNavProductOverview" />
+							<MenuItem icon="sap-icon://customer-view"
+								text="{i18n>productOptions}"
+								visible="{=${userModel>/UCC}}"
+								id="onNavProductOptionsButton"
+								press="onNavProductOptions" />
+						</Menu>
+					</menu>
+				</MenuButton>
+				<MenuButton text="{i18n>language}"
+					type="Ghost"
+					icon="sap-icon://settings">
+					<menu>
+						<Menu>
+							<MenuItem icon="i18n/en.png"
+								id="langEN"
+								text="{i18n>english}"
+								press="changeLangToEN"
+								visible="true"
+								tooltip="change language to english" />
+							<MenuItem icon="i18n/de.png"
+								id="langDE"
+								text="{i18n>german}"
+								press="changeLangToDE"
+								visible="true"
+								tooltip="Sprache auf Deutsch wechseln" />
+						</Menu>
+					</menu>
+				</MenuButton>
+			</OverflowToolbar>
+		</subHeader>
+		<content>
+			<App id="app" />
+		</content>
+	</Page>
+</mvc:View>
