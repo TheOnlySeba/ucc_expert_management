@@ -1,8 +1,8 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
 	xmlns:m="sap.m"
-	controllerName="Namespace.controller.ExpertOverview">
+	controllerName="Service_UI5.controller.expert">
 
-	<m:Page title="Expert Overview"
+	<m:Page title="{i18n>Overview}"
 		class="sapUiContentPadding"
 		showHeader="false">
 		<m:content>
