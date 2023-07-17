@@ -26,21 +26,15 @@
           "bundleName": "iService_UI5.i18n.i18n"
         }
       },
-      "allocationCreate": {
+      "expertCreate": {
           "type": "sap.ui.model.json.JSONModel",
-          "uri": "model/allocationCreate.json",
+          "uri": "model/expertCreate.json",
           "preload": true,
           "settings": {}
       },
-      "columnsModel": {
-          "type": "sap.ui.model.json.JSONModel",
-          "uri": "model/columnsModel.json",
-          "preload": true,
-          "settings": {}
-      },
-      "contractCreate": {
+      "labelCreate": {
         "type": "sap.ui.model.json.JSONModel",
-        "uri": "model/contractCreate.json",
+        "uri": "model/labelCreate.json",
         "preload":true,
         "settings":{}
       }
