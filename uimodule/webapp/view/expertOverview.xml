@@ -1,29 +1,29 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
 	xmlns:m="sap.m"
-	controllerName="iService_UI5.controller.productOverview">
+	controllerName="Namespace.controller.ExpertOverview">
 
-	<m:Page title="iServices"
+	<m:Page title="Expert Overview"
 		class="sapUiContentPadding"
 		showHeader="false">
 		<m:content>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer />
-				<m:Button text="{i18n>newProduct}"
+				<m:Button text="{i18n>newExpert}"
 					type="Accept"
-					press="onCreateProduct"
+					press="onCreateExpert"
 					icon="sap-icon://add" />
-				<m:Button text="{i18n>updateProduct}"
-					press="onUpdateSelectedProduct"
+				<m:Button text="{i18n>updateExpert}"
+					press="onUpdateSelectedExpert"
 					icon="sap-icon://edit" />
-				<m:Button text="{i18n>deleteProduct}"
+				<m:Button text="{i18n>deleteExpert}"
 					type="Reject"
-					press="onDeleteSelectedProduct"
+					press="onDeleteSelectedExpert"
 					icon="sap-icon://delete" />
 			</m:OverflowToolbar>
-			<m:Table id="productTable"
-				headerText="{i18n>productOverview}"
+			<m:Table id="expertTable"
+				headerText="{i18n>expertOverview}"
 				items="{
-				path:'/ProduktSet'
+				path:'/zcrm_expert_availabilitySet'
 			}"
 				growing="true"
 				growingThreshold="15"
@@ -31,18 +31,21 @@
 				<m:columns>
 					<m:Column mergeDuplicates="true">
 						<m:header>
-							<m:Text text="{i18n>ProductId}" />
+							<m:Text text="{i18n>ZuccExpert}" />
 						</m:header>
 					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>PName}" />
-						</m:header>
-					</m:Column>
+					<!-- Add more columns as per your data structure here -->
 				</m:columns>
 				<m:ColumnListItem>
-					<m:Text text="{Id}" />
-					<m:Text text="{PName}" />
+					<m:Text text="{ZuccExpert}" />
+					<m:Text text="{Mo}" />
+					<m:Text text="{Tu}" />
+					<m:Text text="{We}" />
+					<m:Text text="{Th}" />
+					<m:Text text="{Fr}" />
+					<m:Text text="{ValidFrom}" />
+					<m:Text text="{ValidTo}" />
+					<!-- Add more fields as per your data structure here -->
 				</m:ColumnListItem>
 			</m:Table>
 		</m:content>
