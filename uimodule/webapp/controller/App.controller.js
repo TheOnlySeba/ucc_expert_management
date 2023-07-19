@@ -1,30 +1,17 @@
 sap.ui.define([
-	"iService_UI5/controller/BaseController",
-	"sap/ui/model/Filter"
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/routing/History",
+	"sap/ui/core/UIComponent"
 
-], function (BaseController, Filter) {
+
+], function (Controller, History) {
 	"use strict";
 
 	var oModel;
 
-	return BaseController.extend("iService_UI5.controller.App", {
+	return Controller.extend("iService_UI5.controller.App", {
 
-		onInit: function () {
 
-			var oSettingsModel = this.getSettingsModel();
-			var that = this;
-			oSettingsModel.attachRequestCompleted(function () {
-				var iServiceURL = this.getProperty("/oPartDataUrl");
-				var serviceURL = this.getProperty("/oDataUrl");
-				oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
-				var onPress = function () {
-					window.open(window.location.origin + iServiceURL);
-				};
-				that.getView().byId("navToPart").attachPress(onPress);
-				that.initializeUModel();
-			});
-
-		},
 
 		// change i18n (language) to english on website
 		changeLangToEN: function () {
@@ -102,6 +89,15 @@ sap.ui.define([
 		onAfterRendering: function () {
 			$(".sapFDynamicPageContent, .sapFDynamicPageContentFitContainer").css("padding", "0 0 0 0");
 
+		},
+		navigateToExpertView: function () {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("expert");
+		},
+
+		navigateToLabelView: function () {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("label");
 		},
 
 

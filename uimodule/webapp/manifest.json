@@ -45,14 +45,15 @@
         "controlAggregation": "pages",
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
+        "controlId": "app",
         "transition": "slide",
         "async": true
       },
       "routes": [
         {
           "pattern": "",
-          "name": "home",
-          "target": "home"
+          "name": "app",
+          "target": "app"
         },
         {
           "pattern": "expert",
@@ -78,8 +79,8 @@
       
       ],
       "targets": {
-        "home": {
-          "viewId": "main",
+        "app": {
+          "viewId": "app",
           "viewName": "main",
           "controlId": "app",
           "viewLevel": 1

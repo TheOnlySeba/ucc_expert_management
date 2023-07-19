@@ -2,13 +2,10 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	height="100%"
 	controllerName="iService_UI5.controller.App">
-	<Page title="{i18n>welcome} "
+	<Page title="{i18n>ExpertManagement}"  
 		class=" sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer">
-		<headerContent>
-			<Label text="{i18n>loggedOnAs}" />
-		</headerContent>
 		<subHeader>
-			<OverflowToolbar>
+			<OverflowToolbar layoutData="new sap.m.OverflowToolbarLayoutData({moveToOverflow: false, priority: 'High'})">
 				<Button icon="sap-icon://study-leave"
 					type="Ghost"
 					text="{i18n>toExpert}"
@@ -19,6 +16,7 @@
 					text="{i18n>toLabel}"
 					press="navigateToLabelView"
 					 />
+				<ToolbarSpacer/>
 				<MenuButton text="{i18n>language}"
 					type="Ghost"
 					icon="sap-icon://settings">
