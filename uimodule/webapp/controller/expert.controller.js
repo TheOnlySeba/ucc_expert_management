@@ -27,8 +27,11 @@ sap.ui.define([
         },
 
         onCreateExpert: function () {
+            console.log("pressed");
+            var that = this;
             // Step 1: Define JSONModel instance for new expert
-            this.oNewExpertModel = new JSONModel({
+            var oNewExpertModel = new sap.ui.model.json.JSONModel();
+            oNewExpertModel = {
                 Mail: "",
                 Mo: false,
                 Tu: false,
@@ -37,7 +40,7 @@ sap.ui.define([
                 Fr: false,
                 ValidFrom: "",
                 ValidTo: ""
-            });
+            };
 
             // Step 2: Load the Fragment
             if (!this.byId("newExpertDialog")) {
