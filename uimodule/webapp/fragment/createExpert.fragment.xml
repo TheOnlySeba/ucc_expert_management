@@ -67,7 +67,7 @@
                 type="Accept" />
 
             <Button text="{i18n>cancelBtn}"
-                press="onCancelExpert"
+                press="onCancelSave"
                 type="Reject" />
         </buttons>
     </Dialog >
