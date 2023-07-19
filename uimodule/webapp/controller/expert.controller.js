@@ -67,7 +67,7 @@ sap.ui.define([
 
         onSaveExpert: function () {
             // Step 1: Get the current data from the JSONModel instance
-            var oData = this.oNewExpertModel.getData();
+            var oData = this.getView().getModel("expertCreate").getData();
 
             // Step 2: Convert Checkbox value to 1 if checked and 0 if unchecked
             oData.Mo = oData.Mo ? "1" : "0";
