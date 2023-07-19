@@ -91,6 +91,7 @@ sap.ui.define([
 
 		},
 		navigateToExpertView: function () {
+			console.log("Pressed");
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("expert");
 		},
