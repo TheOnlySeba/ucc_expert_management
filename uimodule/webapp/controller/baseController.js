@@ -81,11 +81,11 @@ sap.ui.define([
 			this.getRouter().navTo("createLabel", {}, true);
 		},
 
-		onNavExpert: function () {
+		navigateToExpertView: function () {
 			this.getRouter().navTo("expert")
 		},
 
-		onNavLabel: function () {
+		navigateToLabelView: function () {
 			this.getRouter().navTo("label")
 		},
 
