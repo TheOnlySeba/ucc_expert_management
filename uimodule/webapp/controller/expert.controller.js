@@ -4,7 +4,7 @@ sap.ui.define([
 ], function (Controller, MessageToast) {
     "use strict";
 
-    return Controller.extend("Service_UI5.controller.expert", {
+    return Controller.extend("iService_UI5.controller.expert", {
         onInit: function () {
             //Initialization code
         },
@@ -26,7 +26,7 @@ sap.ui.define([
             if (!this.byId("newExpertDialog")) {
                 Fragment.load({
                     id: this.getView().getId(),
-                    name: "Service_UI5.view.newExpertDialog",
+                    name: "iService_UI5.view.newExpertDialog",
                     controller: this
                 }).then(function (oDialog) {
                     // Connect dialog to the root view of this component (models, lifecycle)

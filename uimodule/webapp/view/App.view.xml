@@ -5,7 +5,7 @@
 	<Page title="{i18n>ExpertManagement}"  
 		class=" sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer">
 		<subHeader>
-			<OverflowToolbar layoutData="new sap.m.OverflowToolbarLayoutData({moveToOverflow: false, priority: 'High'})">
+			<OverflowToolbar>
 				<Button icon="sap-icon://study-leave"
 					type="Ghost"
 					text="{i18n>toExpert}"
