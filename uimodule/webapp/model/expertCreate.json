@@ -1,11 +1,11 @@
 {
     "Expert": {
         "Mail": "",
-        "Mo":"",
-        "Tu": "",
-        "We": "",
-        "Th": "",
-        "Fr": "",
+        "Mo": false,
+        "Tu": false,
+        "We": false,
+        "Th": false,
+        "Fr": false,
         "ValidTo": "",
         "ValidFrom":""
         

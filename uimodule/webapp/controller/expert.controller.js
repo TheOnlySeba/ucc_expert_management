@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
-], function (Controller, MessageToast) {
+    "sap/m/MessageToast",
+    "sap/ui/core/Fragment"
+], function (Controller, MessageToast, Fragment) {
     "use strict";
 
     return Controller.extend("iService_UI5.controller.expert", {
@@ -25,6 +26,9 @@ sap.ui.define([
             });
 
         },
+        geti18n: function (sKey) {
+            return this.getView().getModel("i18n").getResourceBundle().getText(sKey);
+        },
 
         onCreateExpert: function () {
             console.log("pressed");
@@ -46,7 +50,7 @@ sap.ui.define([
             if (!this.byId("newExpertDialog")) {
                 Fragment.load({
                     id: this.getView().getId(),
-                    name: "iService_UI5.view.newExpertDialog",
+                    name: "iService_UI5.fragment.createExpert",
                     controller: this
                 }).then(function (oDialog) {
                     // Connect dialog to the root view of this component (models, lifecycle)
@@ -95,6 +99,11 @@ sap.ui.define([
                     MessageToast.show("Error while creating the expert.");
                 }
             });
+        },
+        onCancelSave: function () {
+            var that = this;
+            that.byId("newExpertDialog").close();
+            MessageToast.show(this.geti18n("expertNotCreated"));
         },
 
         onUpdateSelectedExpert: function () {
