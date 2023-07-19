@@ -34,6 +34,41 @@
 							<m:Text text="{i18n>ZuccExpert}" />
 						</m:header>
 					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>Mo}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>Di}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>Mi}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>Do}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>Fr}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ValidFrom}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ValidUntil}" />
+						</m:header>
+					</m:Column>
 					<!-- Add more columns as per your data structure here -->
 				</m:columns>
 				<m:ColumnListItem>

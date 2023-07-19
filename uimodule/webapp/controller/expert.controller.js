@@ -6,7 +6,24 @@ sap.ui.define([
 
     return Controller.extend("iService_UI5.controller.expert", {
         onInit: function () {
-            //Initialization code
+            var sPath = $.sap.getModulePath(
+                "iService_UI5",
+                "/model/applicationProperties.json"
+            );
+            var that = this;
+
+            var oSettingsModel = new sap.ui.model.json.JSONModel();
+            oSettingsModel.loadData(sPath);
+            oSettingsModel.attachRequestCompleted(function () {
+                that.getView().setModel(this, "Experts");
+                var serviceURL = that
+                    .getView()
+                    .getModel("Experts")
+                    .getProperty("/oDataUrl");
+                var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+                that.getView().setModel(oModel);
+            });
+
         },
 
         onCreateExpert: function () {
