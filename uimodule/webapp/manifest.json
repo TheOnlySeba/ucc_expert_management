@@ -85,11 +85,11 @@
           "controlId": "app",
           "viewLevel": 1
         },
-        "customer": {
+        "expert": {
           "viewId": "expert",
           "viewName": "expert",
           "controlId": "app",
-          "viewLevel": 2
+          "viewLevel": 1
         },
         "createExpert": {
           "viewId": "createExpert",
@@ -101,7 +101,7 @@
           "viewId": "label",
           "viewName": "label",
           "controlId": "app",
-          "viewLevel": 2
+          "viewLevel": 1
         },
         "createLabel": {
             "viewId": "createLabel",
