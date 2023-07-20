@@ -3,8 +3,9 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/ui/core/Fragment",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/core/format/DateFormat"
-], function (Controller, MessageToast, Fragment, JSONModel, DateFormat) {
+    "sap/ui/core/format/DateFormat",
+    "sap/m/Dialog"
+], function (Controller, MessageToast, Fragment, JSONModel, DateFormat, Dialog) {
     "use strict";
 
     return Controller.extend("iService_UI5.controller.expert", {
@@ -123,13 +124,81 @@ sap.ui.define([
         },
 
         onDeleteSelectedExpert: function () {
-            //Code for deleting the selected expert
-            MessageToast.show("Delete function not implemented");
+            var that = this;
+
+
+            var cancelButton = new sap.m.Button({
+                text: that.geti18n("cancel"),
+                type: sap.m.ButtonType.Default,
+                press: function () {
+                    sap.ui.getCore().byId("deletePopup").destroy();
+                },
+            });
+
+            var deleteButton = new sap.m.Button({
+                text: that.geti18n("delete"),
+                type: sap.m.ButtonType.Reject,
+                press: function () {
+                    var serviceURL = that
+                        .getView()
+                        .getModel("Experts")
+                        .getProperty("/oDataUrl");
+                    var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+
+                    var deleteZuccExpert = sap.ui.getCore().byId("deleteZuccExpert").getValue();
+                    var dPath = "/zcrm_expert_availabilitySet(zucc_expert='" + deleteZuccExpert + "')";
+                    oModel.remove(dPath, {
+                        success: function () {
+                            MessageToast.show("Successfully deleted");
+                            oModel.refresh();
+                            that.onClear();
+                            sap.ui.getCore().byId("deletePopup").destroy();
+
+                        },
+                        error: function () {
+                            MessageToast.show("Error during Expert deletion");
+                        },
+                    });
+                },
+            });
+
+            if (that.getView().byId("expertTable").getSelectedItem() != null) {
+                var selectedItem = that
+                    .getView()
+                    .byId("expertTable")
+                    .getSelectedItem()
+                    .getBindingContext();
+
+                var oDialog = new Dialog("deletePopup", {
+                    title: that.geti18n("deletePopupExpert"),
+                    modal: true,
+                    contentWidth: "1em",
+                    buttons: [deleteButton, cancelButton],
+                    content: [
+                        new sap.m.Label({
+                            text: that.geti18n("zucc_expert"),
+                        }),
+                        new sap.m.Input({
+                            id: "deleteZuccExpert",
+                            value: selectedItem.getProperty("zucc_expert"),
+                            editable: false,
+                        }),
+                    ],
+                });
+            }
+            if (selectedItem != null) {
+                sap.ui.getCore().byId("deletePopup").open();
+            } else {
+                MessageToast.show(that.geti18n("errorSelectFirst"));
+                sap.ui.getCore().byId("deletePopup").destroy();
+            }
         },
+
         onClear: function () {
             var serviceURL = this.getView().getModel("Experts").getProperty("/oDataUrl");
             var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
             this.getView().byId("expertTable").setModel(oModel);
         },
     });
-});
+}
+);
