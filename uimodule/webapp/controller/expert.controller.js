@@ -2,8 +2,9 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
     "sap/ui/core/Fragment",
-    "sap/ui/model/json/JSONModel"
-], function (Controller, MessageToast, Fragment, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/format/DateFormat"
+], function (Controller, MessageToast, Fragment, JSONModel, DateFormat) {
     "use strict";
 
     return Controller.extend("iService_UI5.controller.expert", {
@@ -67,6 +68,7 @@ sap.ui.define([
         },
 
         onSaveExpert: function () {
+            var that = this;
             // Step 1: Get the current data from the JSONModel instance
             // TODO: Change data according to expertCreate Model
             var oPayload = new JSONModel({
@@ -81,13 +83,17 @@ sap.ui.define([
             });
 
             // Step 2: Convert Checkbox value to 1 if checked and 0 if unchecked
-            oPayload.oData.mo = oPayload.oData.mo ? "1" : "0";
-            oPayload.oData.tu = oPayload.oData.tu ? "1" : "0";
-            oPayload.oData.we = oPayload.oData.we ? "1" : "0";
-            oPayload.oData.th = oPayload.oData.th ? "1" : "0";
-            oPayload.oData.fr = oPayload.oData.fr ? "1" : "0";
+            oPayload.oData.mo = oPayload.oData.mo ? 1 : 0;
+            oPayload.oData.tu = oPayload.oData.tu ? 1 : 0;
+            oPayload.oData.we = oPayload.oData.we ? 1 : 0;
+            oPayload.oData.th = oPayload.oData.th ? 1 : 0;
+            oPayload.oData.fr = oPayload.oData.fr ? 1 : 0;
 
-
+            //Step 3: Convert Date into right format
+            var oDateFormat = DateFormat.getDateInstance({ pattern: "dd.MM.yyyy" });
+            oPayload.oData.valid_from = oDateFormat.parse(oPayload.oData.valid_from);
+            oPayload.oData.valid_to = oDateFormat.parse(oPayload.oData.valid_to);
+            console.log(oPayload.oData.valid_from);
 
 
             // Step 3: Get ODataModel instance and create new entity
@@ -97,8 +103,8 @@ sap.ui.define([
             oModel.create("/zcrm_expert_availabilitySet", oPayload.oData, {
                 success: function () {
                     MessageToast.show("Expert created successfully!");
-                    this.onClear();
-                    this.byId("newExpertDialog").close();
+
+                    that.byId("newExpertDialog").close();
                 }.bind(this),
                 error: function () {
                     MessageToast.show("Error while creating the expert.");
