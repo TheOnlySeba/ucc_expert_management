@@ -1,13 +1,13 @@
 {
     "Expert": {
-        "Mail": "",
-        "Mo": false,
-        "Tu": false,
-        "We": false,
-        "Th": false,
-        "Fr": false,
-        "ValidTo": "",
-        "ValidFrom":""
+        "zucc_expert": "",
+        "mo": false,
+        "tu": false,
+        "we": false,
+        "th": false,
+        "fr": false,
+        "valid_from": "",
+        "valid_to":""
         
         
     }

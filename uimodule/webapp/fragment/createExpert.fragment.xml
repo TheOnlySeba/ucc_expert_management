@@ -14,7 +14,7 @@
                             <Label text="{i18n>mail}"
                                 labelFor="ExpertMail" />
                             <Input id="ExpertMail"
-                                value="{expertCreate>Mail}"
+                                value="{expertCreate>zucc_expert}"
                                 type="Text"
                                 required="true"
                                 visible="true">
@@ -22,38 +22,38 @@
                             <Label text="{i18n>Mo}"
                                 labelFor="Mo" />
                             <CheckBox id="Mo"
-                                selected="{expertCreate>Mo}">
+                                selected="{expertCreate>mo}">
                             </CheckBox>
                             <Label text="{i18n>Tu}"
                                 labelFor="Tu" />
                             <CheckBox id="Tu"
-                                selected="{expertCreate>Tu}">
+                                selected="{expertCreate>tu}">
                             </CheckBox>
                             <Label text="{i18n>We}"
                                 labelFor="We" />
                             <CheckBox id="We"
-                                selected="{expertCreate>We}">
+                                selected="{expertCreate>we}">
                             </CheckBox>
                             <Label text="{i18n>Th}"
                                 labelFor="Th" />
                             <CheckBox id="Th"
-                                selected="{expertCreate>Th}">
+                                selected="{expertCreate>th}">
                             </CheckBox>
                             <Label text="{i18n>Fr}"
                                 labelFor="Fr" />
                             <CheckBox id="Fr"
-                                selected="{expertCreate>Fr}">
+                                selected="{expertCreate>fr}">
                             </CheckBox>
                             <Label text="{i18n>ValidFrom}"
                                 labelFor="ValidFrom" />
                             <DatePicker id="ValidFrom"
-                                value="{expertCreate>ValidFrom}"
+                                value="{expertCreate>valid_from}"
                                 required="true">
                             </DatePicker>
                             <Label text="{i18n>ValidTo}"
                                 labelFor="ValidTo" />
                             <DatePicker id="ValidTo"
-                                value="{expertCreate>ValidTo}">
+                                value="{expertCreate>valid_to}">
                             </DatePicker>
                         </f:content>
                     </f:SimpleForm>

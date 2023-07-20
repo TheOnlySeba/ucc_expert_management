@@ -72,14 +72,14 @@
 					<!-- Add more columns as per your data structure here -->
 				</m:columns>
 				<m:ColumnListItem>
-					<m:Text text="{ZuccExpert}" />
-					<m:Text text="{Mo}" />
-					<m:Text text="{Tu}" />
-					<m:Text text="{We}" />
-					<m:Text text="{Th}" />
-					<m:Text text="{Fr}" />
-					<m:Text text="{ValidFrom}" />
-					<m:Text text="{ValidTo}" />
+					<m:Text text="{zucc_expert}" />
+					<m:Text text="{mo}" />
+					<m:Text text="{tu}" />
+					<m:Text text="{we}" />
+					<m:Text text="{th}" />
+					<m:Text text="{fr}" />
+					<m:Text text="{valid_from}" />
+					<m:Text text="{valid_to}" />
 					<!-- Add more fields as per your data structure here -->
 				</m:ColumnListItem>
 			</m:Table>
