@@ -103,7 +103,7 @@ sap.ui.define([
             oModel.create("/zcrm_expert_availabilitySet", oPayload.oData, {
                 success: function () {
                     MessageToast.show("Expert created successfully!");
-
+                    that.onClear();
                     that.byId("newExpertDialog").close();
                 }.bind(this),
                 error: function () {
@@ -125,6 +125,11 @@ sap.ui.define([
         onDeleteSelectedExpert: function () {
             //Code for deleting the selected expert
             MessageToast.show("Delete function not implemented");
-        }
+        },
+        onClear: function () {
+            var serviceURL = this.getView().getModel("Experts").getProperty("/oDataUrl");
+            var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+            this.getView().byId("expertTable").setModel(oModel);
+        },
     });
 });
