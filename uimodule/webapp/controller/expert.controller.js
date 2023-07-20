@@ -119,8 +119,143 @@ sap.ui.define([
         },
 
         onUpdateSelectedExpert: function () {
-            //Code for updating the selected expert
-            MessageToast.show("Update function not implemented");
+            var that = this;
+            var oDateFormat = DateFormat.getDateInstance({ pattern: "dd.MM.yyyy" });
+            var cancelButton = new sap.m.Button({
+                text: that.geti18n("cancel"),
+                type: sap.m.ButtonType.Default,
+                press: function () {
+                    sap.ui.getCore().byId("updatePopup").destroy();
+                },
+            });
+
+            var updateButton = new sap.m.Button({
+                text: that.geti18n("update"),
+                type: sap.m.ButtonType.Accept,
+                press: function () {
+                    var serviceURL = that
+                        .getView()
+                        .getModel("Experts")
+                        .getProperty("/oDataUrl");
+                    var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+
+                    var oUpdatedExpert = {
+                        zucc_expert: sap.ui.getCore().byId("updatezucc_expert").getValue(),
+                        mo: sap.ui.getCore().byId("updatemo").getSelected() ? 1 : 0,
+                        tu: sap.ui.getCore().byId("updatetu").getSelected() ? 1 : 0,
+                        we: sap.ui.getCore().byId("updatewe").getSelected() ? 1 : 0,
+                        th: sap.ui.getCore().byId("updateth").getSelected() ? 1 : 0,
+                        fr: sap.ui.getCore().byId("updatefr").getSelected() ? 1 : 0,
+                        valid_from: oDateFormat.parse(sap.ui.getCore().byId("updatevalid_from").getValue()),
+                        valid_to: oDateFormat.parse(sap.ui.getCore().byId("updatevalid_to").getValue()),
+                    };
+
+                    var updateZuccExpert = sap.ui.getCore().byId("updatezucc_expert").getValue();
+                    var dPath = "/zcrm_expert_availabilitySet(zucc_expert='" + updateZuccExpert + "')";
+
+                    oModel.update(dPath, oUpdatedExpert, {
+                        success: function () {
+
+
+                            MessageToast.show("Successfully updated!");
+                            oModel.refresh();
+                            that.onClear();
+                            sap.ui.getCore().byId("updatePopup").destroy();
+                        },
+                        error: function (oError) {
+                            sap.m.MessageToast.show("Error during contract update");
+                        },
+                    });
+                },
+            });
+
+            if (that.getView().byId("expertTable").getSelectedItem() != null) {
+                var selectedItem = that
+                    .getView()
+                    .byId("expertTable")
+                    .getSelectedItem()
+                    .getBindingContext();
+
+                var oDialog = new sap.m.Dialog("updatePopup", {
+                    title: that.geti18n("updatePopupexpert"),
+                    modal: true,
+                    contentWidth: "4em",
+                    buttons: [updateButton, cancelButton],
+                    content: [
+                        new sap.m.Label({
+                            text: that.geti18n("zucc_expert"),
+                        }),
+                        new sap.m.Input({
+                            id: "updatezucc_expert",
+                            value: selectedItem.getProperty("zucc_expert"),
+                            editable: false,
+                        }),
+                        new sap.m.Label({
+                            text: that.geti18n("Mo"),
+                        }),
+                        new sap.m.CheckBox({
+                            id: "updatemo",
+                            value: selectedItem.getProperty("mo"),
+                            editable: true,
+                        }),
+                        new sap.m.Label({
+                            text: that.geti18n("Tu"),
+                        }),
+                        new sap.m.CheckBox({
+                            id: "updatetu",
+                            value: selectedItem.getProperty("tu"),
+                            editable: true,
+                        }),
+                        new sap.m.Label({
+                            text: that.geti18n("We"),
+                        }),
+                        new sap.m.CheckBox({
+                            id: "updatewe",
+                            value: selectedItem.getProperty("we"),
+                            editable: true,
+                        }),
+                        new sap.m.Label({
+                            text: that.geti18n("Th"),
+                        }),
+                        new sap.m.CheckBox({
+                            id: "updateth",
+                            value: selectedItem.getProperty("th"),
+                            editable: true,
+                        }),
+                        new sap.m.Label({
+                            text: that.geti18n("Fr"),
+                        }),
+                        new sap.m.CheckBox({
+                            id: "updatefr",
+                            value: selectedItem.getProperty("fr"),
+                            editable: true,
+                        }),
+                        new sap.m.Label({
+                            text: that.geti18n("ValidFrom"),
+                        }),
+                        new sap.m.DatePicker({
+                            id: "updatevalid_from",
+                            value: selectedItem.getProperty("valid_from"),
+                            editable: true,
+                        }),
+                        new sap.m.Label({
+                            text: that.geti18n("ValidTo"),
+                        }),
+                        new sap.m.DatePicker({
+                            id: "updatevalid_to",
+                            value: selectedItem.getProperty("valid_to"),
+                            editable: true,
+                        }),
+
+                    ],
+                });
+            }
+            if (selectedItem != null) {
+                sap.ui.getCore().byId("updatePopup").open();
+            } else {
+                MessageToast.show(that.geti18n("errorSelectFirst"));
+                sap.ui.getCore().byId("updatePopup").destroy();
+            }
         },
 
         onDeleteSelectedExpert: function () {
