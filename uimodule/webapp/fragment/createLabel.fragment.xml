@@ -11,14 +11,6 @@
                         id="expertForm"
                         binding="{labelCreate>/Label}">
                         <f:content>
-                            <Label text="{i18n>labelid}"
-                                labelFor="LabelId" />
-                            <Input id="LabelId"
-                                value="{labelCreate>ZLABEL_ID}"
-                                type="Text"
-                                required="true"
-                                visible="true">
-                            </Input>
                             <Label text="{i18n>zproduct}"
                                 labelFor="Zproduct" />
                             <Input id="Zproudct"

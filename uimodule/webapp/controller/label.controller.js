@@ -39,7 +39,6 @@ sap.ui.define([
             // Step 1: Define JSONModel instance for new expert
             var oNewLabelModel = new sap.ui.model.json.JSONModel();
             oNewLabelModel = {
-                ZLABEL_ID: "",
                 ZPRODUCT: "",
                 ZUCC_EXPERT_MO_1: "",
                 ZUCC_EXPERT_MO_2: "",
@@ -82,7 +81,6 @@ sap.ui.define([
             // Step 1: Get the current data from the JSONModel instance
             // TODO: Change data according to expertCreate Model
             var oPayload = new JSONModel({
-                "ZLABEL_ID": parseInt(this.getView().getModel("labelCreate").getProperty("/Label").ZLABEL_ID),
                 "ZPRODUCT": this.getView().getModel("labelCreate").getProperty("/Label").ZPRODUCT,
                 "ZUCC_EXPERT_MO_1": this.getView().getModel("labelCreate").getProperty("/Label").ZUCC_EXPERT_MO_1,
                 "ZUCC_EXPERT_MO_2": this.getView().getModel("labelCreate").getProperty("/Label").ZUCC_EXPERT_MO_2,
