@@ -1,0 +1,113 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Dialog id="newLabelDialog"
+        title="{i18n>createLabel}">
+        <HBox>
+            <items>
+                <Panel>
+                    <f:SimpleForm editable="true"
+                        layout="ResponsiveGridLayout"
+                        id="expertForm"
+                        binding="{labelCreate>/Label}">
+                        <f:content>
+                            <Label text="{i18n>zproduct}"
+                                labelFor="Zproduct" />
+                            <Input id="Zproudct"
+                                value="{labelCreate>ZPRODUCT}"
+                                type="Text"
+                                required="true"
+                                visible="true">
+                            </Input>
+                            <Label text="{i18n>Mo1}"
+                                labelFor="Mo1" />
+                            <Input id="Mo1"
+                                value="{labelCreate>ZUCC_EXPERT_MO_1}">
+                            </Input>
+                            <Label text="{i18n>Mo2}"
+                                labelFor="Mo2" />
+                            <Input id="Mo2"
+                                value="{labelCreate>ZUCC_EXPERT_MO_2}">
+                            </Input>
+                            <Label text="{i18n>Mo3}"
+                                labelFor="Mo3" />
+                            <Input id="Mo3"
+                                value="{labelCreate>ZUCC_EXPERT_MO_3}">
+                            </Input>
+                            <Label text="{i18n>Di1}"
+                                labelFor="Di1" />
+                            <Input id="Di1"
+                                value="{labelCreate>ZUCC_EXPERT_DI_1}">
+                            </Input>
+                            <Label text="{i18n>Di2}"
+                                labelFor="Di2" />
+                            <Input id="Di2"
+                                value="{labelCreate>ZUCC_EXPERT_DI_2}">
+                            </Input>
+                            <Label text="{i18n>Di3}"
+                                labelFor="Di3" />
+                            <Input id="Di3"
+                                value="{labelCreate>ZUCC_EXPERT_DI_3}">
+                            </Input>
+                            <Label text="{i18n>Mi1}"
+                                labelFor="Mi1" />
+                            <Input id="Mi1"
+                                value="{labelCreate>ZUCC_EXPERT_MI_1}">
+                            </Input>
+                            <Label text="{i18n>Mi2}"
+                                labelFor="Mi2" />
+                            <Input id="Mi2"
+                                value="{labelCreate>ZUCC_EXPERT_MI_2}">
+                            </Input>
+                            <Label text="{i18n>Mi3}"
+                                labelFor="Mi3" />
+                            <Input id="Mi3"
+                                value="{labelCreate>ZUCC_EXPERT_MI_3}">
+                            </Input>
+                            <Label text="{i18n>Do1}"
+                                labelFor="Do1" />
+                            <Input id="Do1"
+                                value="{labelCreate>ZUCC_EXPERT_DO_1}">
+                            </Input>
+                            <Label text="{i18n>Do2}"
+                                labelFor="Do2" />
+                            <Input id="Do2"
+                                value="{labelCreate>ZUCC_EXPERT_DO_2}">
+                            </Input>
+                            <Label text="{i18n>Do3}"
+                                labelFor="Do3" />
+                            <Input id="Do3"
+                                value="{labelCreate>ZUCC_EXPERT_DO_3}">
+                            </Input>
+                            <Label text="{i18n>Fr1}"
+                                labelFor="Fr1" />
+                            <Input id="Fr1"
+                                value="{labelCreate>ZUCC_EXPERT_FR_1}">
+                            </Input>
+                            <Label text="{i18n>Fr2}"
+                                labelFor="Fr2" />
+                            <Input id="Fr2"
+                                value="{labelCreate>ZUCC_EXPERT_FR_2}">
+                            </Input>
+                            <Label text="{i18n>Fr3}"
+                                labelFor="Fr3" />
+                            <Input id="Fr3"
+                                value="{labelCreate>ZUCC_EXPERT_FR_3}">
+                            </Input>
+                        </f:content>
+                    </f:SimpleForm>
+                </Panel>
+            </items>
+        </HBox>
+        
+        <buttons>
+            <Button text="{i18n>createBtn}"
+                press="onSaveLabel"
+                type="Accept" />
+
+            <Button text="{i18n>cancelBtn}"
+                press="onCancelSave"
+                type="Reject" />
+        </buttons>
+    </Dialog >
+</core:FragmentDefinition>

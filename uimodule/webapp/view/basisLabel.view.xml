@@ -1,0 +1,142 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m"
+	controllerName="iService_UI5.controller.basisLabel">
+
+	<m:Page title="{i18n>BasisOverview}"
+		class="sapUiContentPadding"
+		showHeader="false">
+		<m:content>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer />
+				<m:Button text="{i18n>newLabel}"
+					type="Accept"
+					press="onCreateLabel"
+					icon="sap-icon://add" />
+				<m:Button text="{i18n>updateLabel}"
+					press="onUpdateSelectedLabel"
+					icon="sap-icon://edit" />
+				<m:Button text="{i18n>deleteLabel}"
+					type="Reject"
+					press="onDeleteSelectedLabel"
+					icon="sap-icon://delete" />
+			</m:OverflowToolbar>
+			<m:Table id="basisLabelTable"
+				headerText="{i18n>labelOverview}"
+				items="{
+				path:'/zcrm_basis_labelSet'
+			}"
+				growing="true"
+				growingThreshold="15"
+				mode="SingleSelect">
+				<m:columns>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>Zlabel_id}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZProduct}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_MO_1}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_MO_2}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_MO_3}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_DI_1}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_DI_2}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_DI_3}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_MI_1}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_MI_2}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_MI_3}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_DO_1}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_DO_2}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_DO_3}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_FR_1}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_FR_2}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_FR_3}" />
+						</m:header>
+					</m:Column>
+					<!-- Add more columns as per your data structure here -->
+				</m:columns>
+				<m:ColumnListItem>
+					<m:Text text="{ZLABEL_ID}" />
+					<m:Text text="{ZPRODUCT}" />
+					<m:Text text="{ZUCC_EXPERT_MO_1}" />
+					<m:Text text="{ZUCC_EXPERT_MO_2}" />
+					<m:Text text="{ZUCC_EXPERT_MO_3}" />
+					<m:Text text="{ZUCC_EXPERT_DI_1}" />
+					<m:Text text="{ZUCC_EXPERT_DI_2}" />
+					<m:Text text="{ZUCC_EXPERT_DI_3}" />
+					<m:Text text="{ZUCC_EXPERT_MI_1}" />
+					<m:Text text="{ZUCC_EXPERT_MI_2}" />
+					<m:Text text="{ZUCC_EXPERT_MI_3}" />
+					<m:Text text="{ZUCC_EXPERT_DO_1}" />
+					<m:Text text="{ZUCC_EXPERT_DO_2}" />
+					<m:Text text="{ZUCC_EXPERT_DO_3}" />
+					<m:Text text="{ZUCC_EXPERT_FR_1}" />
+					<m:Text text="{ZUCC_EXPERT_FR_2}" />
+					<m:Text text="{ZUCC_EXPERT_FR_3}" />
+					<!-- Add more fields as per your data structure here -->
+				</m:ColumnListItem>
+			</m:Table>
+		</m:content>
+	</m:Page>
+</mvc:View>

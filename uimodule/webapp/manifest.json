@@ -74,6 +74,16 @@
           "pattern": "createLabel",
           "name":"createLabel",
           "target":"createLabel"
+        },
+        {
+          "pattern": "createBasisLabel",
+          "name":"createBasisLabel",
+          "target":"createBasisLabel"
+        },
+        {
+          "pattern": "basisLabel",
+          "name":"basisLabel",
+          "target":"basisLabel"
         }
         
       
@@ -108,6 +118,18 @@
             "viewName": "createLabel",
             "controlId": "app",
             "viewLevel": 2
+        },
+        "createBasisLabel": {
+            "viewId": "createBasisLabel",
+            "viewName": "createBasisLabel",
+            "controlId": "app",
+            "viewLevel": 2
+        },
+        "basisLabel": {
+            "viewId": "basisLabel",
+            "viewName": "basisLabel",
+            "controlId": "app",
+            "viewLevel": 1
         }
       }
     }
