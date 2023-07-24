@@ -1,33 +1,29 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
 	xmlns:m="sap.m"
-	controllerName="iService_UI5.controller.systemAllocation">
+	controllerName="iService_UI5.controller.label">
 
-	<m:Page title="iServices"
+	<m:Page title="{i18n>Overview}"
 		class="sapUiContentPadding"
 		showHeader="false">
 		<m:content>
-			<m:OverflowToolbar visible="{=${userModel>/UCC}}">
+			<m:OverflowToolbar>
 				<m:ToolbarSpacer />
-				<m:Button text="{i18n>newAllocation}"
+				<m:Button text="{i18n>newLabel}"
 					type="Accept"
-					press="onCreateAllocationDialog"
+					press="onCreateLabel"
 					icon="sap-icon://add" />
-				<m:Button text="{i18n>updateAllocation}"
-					press="onUpdateSelectedAllocation"
+				<m:Button text="{i18n>updateLabel}"
+					press="onUpdateSelectedLabel"
 					icon="sap-icon://edit" />
-				<m:Button text="{i18n>deleteAllocation}"
+				<m:Button text="{i18n>deleteLabel}"
 					type="Reject"
-					press="onDeleteSelectedAllocation"
+					press="onDeleteSelectedLabel"
 					icon="sap-icon://delete" />
-				<m:SearchField id="globalSearch"
-					placeholder="{i18n>filter}"
-					search="onFilterAllocation"
-					width="15rem" />
 			</m:OverflowToolbar>
-			<m:Table id="allocationTable"
-				headerText="{i18n>allocationOverview}"
+			<m:Table id="expertTable"
+				headerText="{i18n>labelOverview}"
 				items="{
-				path:'/SystemzuordnungSet'
+				path:'/zcrm_label_mapSet'
 			}"
 				growing="true"
 				growingThreshold="15"
@@ -35,57 +31,104 @@
 				<m:columns>
 					<m:Column mergeDuplicates="true">
 						<m:header>
-							<m:Text text="{i18n>partnerId}" />
+							<m:Text text="{i18n>Zlabel_id}" />
 						</m:header>
 					</m:Column>
 					<m:Column mergeDuplicates="true">
 						<m:header>
-							<m:Text text="{i18n>partnerName}" />
+							<m:Text text="{i18n>ZUCC_EXPERT_MO_1}" />
 						</m:header>
 					</m:Column>
-					<m:Column >
+					<m:Column mergeDuplicates="true">
 						<m:header>
-							<m:Text text="{i18n>systemId}" />
+							<m:Text text="{i18n>ZUCC_EXPERT_MO_2}" />
 						</m:header>
 					</m:Column>
-					<m:Column>
+					<m:Column mergeDuplicates="true">
 						<m:header>
-							<m:Text text="{i18n>mandant}" />
+							<m:Text text="{i18n>ZUCC_EXPERT_MO_3}" />
 						</m:header>
 					</m:Column>
-					<m:Column>
+					<m:Column mergeDuplicates="true">
 						<m:header>
-							<m:Text text="{i18n>installationsnummer}" />
+							<m:Text text="{i18n>ZUCC_EXPERT_DI_1}" />
 						</m:header>
 					</m:Column>
-					<m:Column>
+					<m:Column mergeDuplicates="true">
 						<m:header>
-							<m:Text text="{i18n>Poname}" />
+							<m:Text text="{i18n>ZUCC_EXPERT_DI_2}" />
 						</m:header>
 					</m:Column>
-					<m:Column>
+					<m:Column mergeDuplicates="true">
 						<m:header>
-							<m:Text text="{i18n>PName}" />
+							<m:Text text="{i18n>ZUCC_EXPERT_DI_3}" />
 						</m:header>
 					</m:Column>
-					<m:Column>
+					<m:Column mergeDuplicates="true">
 						<m:header>
-							<m:Text text="{i18n>comment}" />
+							<m:Text text="{i18n>ZUCC_EXPERT_MI_1}" />
 						</m:header>
 					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_MI_2}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_MI_3}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_DO_1}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_DO_2}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_DO_3}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_FR_1}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_FR_2}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZUCC_EXPERT_FR_3}" />
+						</m:header>
+					</m:Column>
+					<!-- Add more columns as per your data structure here -->
 				</m:columns>
 				<m:ColumnListItem>
-					<m:Text text="{PartnerId}" />
-					<m:Text text="{PartnerName}" />
-					<m:Text text="{SystemId}" />
-					<m:Text text="{Mandant}" />
-					<m:Text text="{Installationsnummer}" />
-					<m:Text text="{Poname}" />
-					<m:Text text="{Pname}" />
-					<m:Button visible="{= ${SComment}.length > 1}"
-						icon="sap-icon://notes"
-						press=".onNotesPressed">
-					</m:Button>
+					<m:Text text="{ZLABEL_ID}" />
+					<m:Text text="{ZUCC_EXPERT_MO_1}" />
+					<m:Text text="{ZUCC_EXPERT_MO_2}" />
+					<m:Text text="{ZUCC_EXPERT_MO_3}" />
+					<m:Text text="{ZUCC_EXPERT_DI_1}" />
+					<m:Text text="{ZUCC_EXPERT_DI_2}" />
+					<m:Text text="{ZUCC_EXPERT_DI_3}" />
+					<m:Text text="{ZUCC_EXPERT_MI_1}" />
+					<m:Text text="{ZUCC_EXPERT_MI_2}" />
+					<m:Text text="{ZUCC_EXPERT_MI_3}" />
+					<m:Text text="{ZUCC_EXPERT_DO_1}" />
+					<m:Text text="{ZUCC_EXPERT_DO_2}" />
+					<m:Text text="{ZUCC_EXPERT_DO_3}" />
+					<m:Text text="{ZUCC_EXPERT_FR_1}" />
+					<m:Text text="{ZUCC_EXPERT_FR_2}" />
+					<m:Text text="{ZUCC_EXPERT_FR_3}" />
+					<!-- Add more fields as per your data structure here -->
 				</m:ColumnListItem>
 			</m:Table>
 		</m:content>

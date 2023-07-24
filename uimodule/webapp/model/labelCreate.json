@@ -1,21 +1,21 @@
 {
     "Label":{
-        "Labelid":"",
-        "Mo1":"",
-        "Mo2":"",
-        "Mo3":"",
-        "Tu1":"",
-        "Tu2":"",
-        "Tu3":"",
-        "We1":"",
-        "We2":"",
-        "We3":"",
-        "Th1":"",
-        "Th2":"",
-        "Th3":"",
-        "Fr1":"",
-        "Fr2":"",
-        "Fr3":""
+        "ZLABEL_ID":"",
+        "ZUCC_EXPERT_MO_1":"",
+        "ZUCC_EXPERT_MO_2":"",
+        "ZUCC_EXPERT_MO_3":"",
+        "ZUCC_EXPERT_DI_1":"",
+        "ZUCC_EXPERT_DI_2":"",
+        "ZUCC_EXPERT_DI_3":"",
+        "ZUCC_EXPERT_MI_1":"",
+        "ZUCC_EXPERT_MI_2":"",
+        "ZUCC_EXPERT_MI_3":"",
+        "ZUCC_EXPERT_DO_1":"",
+        "ZUCC_EXPERT_DO_2":"",
+        "ZUCC_EXPERT_DO_3":"",
+        "ZUCC_EXPERT_FR_1":"",
+        "ZUCC_EXPERT_FR_2":"",
+        "ZUCC_EXPERT_FR_3":""
 
 
     }
