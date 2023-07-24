@@ -19,6 +19,14 @@
                                 required="true"
                                 visible="true">
                             </Input>
+                            <Label text="{i18n>zproduct}"
+                                labelFor="Zproduct" />
+                            <Input id="Zproudct"
+                                value="{labelCreate>ZPRODUCT}"
+                                type="Text"
+                                required="true"
+                                visible="true">
+                            </Input>
                             <Label text="{i18n>Mo1}"
                                 labelFor="Mo1" />
                             <Input id="Mo1"

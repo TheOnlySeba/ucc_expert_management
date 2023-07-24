@@ -23,7 +23,7 @@
 			<m:Table id="labelTable"
 				headerText="{i18n>labelOverview}"
 				items="{
-				path:'/zcrm_label_mapSet'
+				path:'/zcrm_label_map001Set'
 			}"
 				growing="true"
 				growingThreshold="15"
@@ -32,6 +32,11 @@
 					<m:Column mergeDuplicates="true">
 						<m:header>
 							<m:Text text="{i18n>Zlabel_id}" />
+						</m:header>
+					</m:Column>
+					<m:Column mergeDuplicates="true">
+						<m:header>
+							<m:Text text="{i18n>ZProduct}" />
 						</m:header>
 					</m:Column>
 					<m:Column mergeDuplicates="true">
@@ -113,6 +118,7 @@
 				</m:columns>
 				<m:ColumnListItem>
 					<m:Text text="{ZLABEL_ID}" />
+					<m:Text text="{ZPRODUCT}" />
 					<m:Text text="{ZUCC_EXPERT_MO_1}" />
 					<m:Text text="{ZUCC_EXPERT_MO_2}" />
 					<m:Text text="{ZUCC_EXPERT_MO_3}" />

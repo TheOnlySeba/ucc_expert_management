@@ -19,7 +19,7 @@ sap.ui.define([
             var oSettingsModel = new sap.ui.model.json.JSONModel();
             oSettingsModel.loadData(sPath);
             oSettingsModel.attachRequestCompleted(function () {
-                that.getView().setModel(this, "Lables");
+                that.getView().setModel(this, "Labels");
                 var serviceURL = that
                     .getView()
                     .getModel("Labels")
@@ -33,13 +33,14 @@ sap.ui.define([
             return this.getView().getModel("i18n").getResourceBundle().getText(sKey);
         },
 
-        onCreateExpert: function () {
+        onCreateLabel: function () {
             console.log("pressed");
             var that = this;
             // Step 1: Define JSONModel instance for new expert
             var oNewLabelModel = new sap.ui.model.json.JSONModel();
             oNewLabelModel = {
                 ZLABEL_ID: "",
+                ZPRODUCT: "",
                 ZUCC_EXPERT_MO_1: "",
                 ZUCC_EXPERT_MO_2: "",
                 ZUCC_EXPERT_MO_3: "",
@@ -81,7 +82,8 @@ sap.ui.define([
             // Step 1: Get the current data from the JSONModel instance
             // TODO: Change data according to expertCreate Model
             var oPayload = new JSONModel({
-                "ZLABEL_ID": this.getView().getModel("labelCreate").getProperty("/Label").ZLABEL_ID,
+                "ZLABEL_ID": parseInt(this.getView().getModel("labelCreate").getProperty("/Label").ZLABEL_ID),
+                "ZPRODUCT": this.getView().getModel("labelCreate").getProperty("/Label").ZPRODUCT,
                 "ZUCC_EXPERT_MO_1": this.getView().getModel("labelCreate").getProperty("/Label").ZUCC_EXPERT_MO_1,
                 "ZUCC_EXPERT_MO_2": this.getView().getModel("labelCreate").getProperty("/Label").ZUCC_EXPERT_MO_2,
                 "ZUCC_EXPERT_MO_3": this.getView().getModel("labelCreate").getProperty("/Label").ZUCC_EXPERT_MO_3,
@@ -106,7 +108,7 @@ sap.ui.define([
 
             var serviceURL = this.getView().getModel("Labels").getProperty("/oDataUrl");
             var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
-            oModel.create("/zcrm_label_mapSet", oPayload.oData, {
+            oModel.create("/zcrm_label_map001Set", oPayload.oData, {
                 success: function () {
                     MessageToast.show("Label created successfully!");
                     that.onClear();
@@ -140,23 +142,33 @@ sap.ui.define([
                 press: function () {
                     var serviceURL = that
                         .getView()
-                        .getModel("Label")
+                        .getModel("Labels")
                         .getProperty("/oDataUrl");
                     var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
 
                     var oUpdatedLabel = {
-                        ZLABEL_ID: sap.ui.getCore().byId("updatezucc_expert").getValue(),
-                        mo: sap.ui.getCore().byId("updatemo").getSelected() ? 1 : 0,
-                        tu: sap.ui.getCore().byId("updatetu").getSelected() ? 1 : 0,
-                        we: sap.ui.getCore().byId("updatewe").getSelected() ? 1 : 0,
-                        th: sap.ui.getCore().byId("updateth").getSelected() ? 1 : 0,
-                        fr: sap.ui.getCore().byId("updatefr").getSelected() ? 1 : 0,
-                        valid_from: oDateFormat.parse(sap.ui.getCore().byId("updatevalid_from").getValue()),
-                        valid_to: oDateFormat.parse(sap.ui.getCore().byId("updatevalid_to").getValue()),
+                        ZLABEL_ID: parseInt(sap.ui.getCore().byId("updatezlabel_id").getValue()),
+                        ZPRODUCT: sap.ui.getCore().byId("updatezproduct").getValue(),
+                        ZUCC_EXPERT_MO_1: sap.ui.getCore().byId("updatemo1").getValue(),
+                        ZUCC_EXPERT_MO_2: sap.ui.getCore().byId("updatemo2").getValue(),
+                        ZUCC_EXPERT_MO_3: sap.ui.getCore().byId("updatemo3").getValue(),
+                        ZUCC_EXPERT_DI_1: sap.ui.getCore().byId("updatedi1").getValue(),
+                        ZUCC_EXPERT_DI_2: sap.ui.getCore().byId("updatedi2").getValue(),
+                        ZUCC_EXPERT_DI_3: sap.ui.getCore().byId("updatedi3").getValue(),
+                        ZUCC_EXPERT_MI_1: sap.ui.getCore().byId("updatemi1").getValue(),
+                        ZUCC_EXPERT_MI_2: sap.ui.getCore().byId("updatemi2").getValue(),
+                        ZUCC_EXPERT_MI_3: sap.ui.getCore().byId("updatemi3").getValue(),
+                        ZUCC_EXPERT_DO_1: sap.ui.getCore().byId("updatedo1").getValue(),
+                        ZUCC_EXPERT_DO_2: sap.ui.getCore().byId("updatedo2").getValue(),
+                        ZUCC_EXPERT_DO_3: sap.ui.getCore().byId("updatedo3").getValue(),
+                        ZUCC_EXPERT_FR_1: sap.ui.getCore().byId("updatefr1").getValue(),
+                        ZUCC_EXPERT_FR_2: sap.ui.getCore().byId("updatefr2").getValue(),
+                        ZUCC_EXPERT_FR_3: sap.ui.getCore().byId("updatefr3").getValue(),
+
                     };
 
-                    var updateLabel = sap.ui.getCore().byId("updatezlabel_id").getValue();
-                    var dPath = "/zcrm_expert_availabilitySet(ZLABEL_ID='" + updateLabel + "')";
+                    var updateLabel = parseInt(sap.ui.getCore().byId("updatezlabel_id").getValue());
+                    var dPath = "/zcrm_label_map001Set(ZLABEL_ID=" + updateLabel + ")";
 
                     oModel.update(dPath, oUpdatedLabel, {
                         success: function () {
@@ -193,6 +205,14 @@ sap.ui.define([
                         new sap.m.Input({
                             id: "updatezlabel_id",
                             value: selectedItem.getProperty("ZLABEL_ID"),
+                            editable: false,
+                        }),
+                        new sap.m.Label({
+                            text: that.geti18n("zproduct"),
+                        }),
+                        new sap.m.Input({
+                            id: "updatezproduct",
+                            value: selectedItem.getProperty("ZPRODUCT"),
                             editable: false,
                         }),
                         new sap.m.Label({
@@ -255,7 +275,7 @@ sap.ui.define([
                             text: that.geti18n("Mi2"),
                         }),
                         new sap.m.Input({
-                            id: "updatedmi2",
+                            id: "updatemi2",
                             value: selectedItem.getProperty("ZUCC_EXPERT_MI_2"),
                             editable: true,
                         }),
@@ -263,7 +283,7 @@ sap.ui.define([
                             text: that.geti18n("Mi3"),
                         }),
                         new sap.m.Input({
-                            id: "updatedmi3",
+                            id: "updatemi3",
                             value: selectedItem.getProperty("ZUCC_EXPERT_MI_3"),
                             editable: true,
                         }),
@@ -295,7 +315,7 @@ sap.ui.define([
                             text: that.geti18n("Fr1"),
                         }),
                         new sap.m.Input({
-                            id: "updatedfr1",
+                            id: "updatefr1",
                             value: selectedItem.getProperty("ZUCC_EXPERT_FR_1"),
                             editable: true,
                         }),
@@ -303,7 +323,7 @@ sap.ui.define([
                             text: that.geti18n("Fr2"),
                         }),
                         new sap.m.Input({
-                            id: "updatedfr2",
+                            id: "updatefr2",
                             value: selectedItem.getProperty("ZUCC_EXPERT_FR_2"),
                             editable: true,
                         }),
@@ -311,7 +331,7 @@ sap.ui.define([
                             text: that.geti18n("Fr3"),
                         }),
                         new sap.m.Input({
-                            id: "updatedfr3",
+                            id: "updatefr3",
                             value: selectedItem.getProperty("ZUCC_EXPERT_FR_3"),
                             editable: true,
                         }),
@@ -350,8 +370,8 @@ sap.ui.define([
                         .getProperty("/oDataUrl");
                     var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
 
-                    var deleteLabel = sap.ui.getCore().byId("deleteLabel").getValue();
-                    var dPath = "/zcrm_label_mapSet(ZLABEL_ID='" + deleteLabel + "')";
+                    var deleteLabel = parseInt(sap.ui.getCore().byId("deleteLabel").getValue());
+                    var dPath = "/zcrm_label_map001Set(ZLABEL_ID=" + deleteLabel + ")";
                     oModel.remove(dPath, {
                         success: function () {
                             MessageToast.show("Successfully deleted");
