@@ -20,7 +20,7 @@
 					press="onDeleteSelectedLabel"
 					icon="sap-icon://delete" />
 			</m:OverflowToolbar>
-			<m:Table id="expertTable"
+			<m:Table id="labelTable"
 				headerText="{i18n>labelOverview}"
 				items="{
 				path:'/zcrm_label_mapSet'
