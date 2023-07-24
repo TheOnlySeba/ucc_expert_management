@@ -18,7 +18,7 @@
 					 />
 				<Button icon="sap-icon://customer"
 					type="Ghost"
-					text="{i18n>toLabel}"
+					text="{i18n>toBasisLabel}"
 					press="navigateToBasisLabelView"
 					 />
 				<ToolbarSpacer/>
