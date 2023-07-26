@@ -37,8 +37,8 @@ sap.ui.define([
             console.log("pressed");
             var that = this;
             // Step 1: Define JSONModel instance for new expert
-            var oNewLabelModel = new sap.ui.model.json.JSONModel();
-            oNewLabelModel = {
+            var oNewBasisLabelModel = new sap.ui.model.json.JSONModel();
+            oNewBasisLabelModel = {
                 ZPRODUCT: "",
                 ZUCC_EXPERT_MO_1: "",
                 ZUCC_EXPERT_MO_2: "",
@@ -67,7 +67,8 @@ sap.ui.define([
                     // Connect dialog to the root view of this component (models, lifecycle)
                     this.getView().addDependent(oDialog);
                     // Step 3: Set the model
-                    oDialog.setModel(this.oNewLabelModel, "basisLabelCreate");
+                    oDialog.setModel(this.oNewBasisLabelModel, "basisLabelCreate");
+                    console.log(oDialog.getModel("basisLabelCreate"));
                     // Step 4: Open the dialog
                     oDialog.open();
                 }.bind(this));
@@ -77,6 +78,7 @@ sap.ui.define([
         },
 
         onSaveLabel: function () {
+            console.log(this.getView().getModel("basisLabelCreate"));
             var that = this;
             // Step 1: Get the current data from the JSONModel instance
             // TODO: Change data according to expertCreate Model

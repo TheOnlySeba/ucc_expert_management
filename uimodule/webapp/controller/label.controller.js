@@ -68,6 +68,7 @@ sap.ui.define([
                     this.getView().addDependent(oDialog);
                     // Step 3: Set the model
                     oDialog.setModel(this.oNewLabelModel, "labelCreate");
+                    console.log(oDialog.getModel("labelCreate"));
                     // Step 4: Open the dialog
                     oDialog.open();
                 }.bind(this));
