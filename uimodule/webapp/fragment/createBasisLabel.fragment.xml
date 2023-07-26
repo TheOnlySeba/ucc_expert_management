@@ -8,8 +8,8 @@
                 <Panel>
                     <f:SimpleForm editable="true"
                         layout="ResponsiveGridLayout"
-                        id="expertForm"
-                        binding="{basisLabelCreate>/Label}">
+                        id="basisLabelForm"
+                        binding="{basisLabelCreate>/BasisLabel}">
                         <f:content>
                             <Label text="{i18n>zproduct}"
                                 labelFor="Zproduct" />

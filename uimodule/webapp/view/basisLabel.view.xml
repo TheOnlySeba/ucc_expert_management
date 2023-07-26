@@ -10,7 +10,7 @@
 				<m:ToolbarSpacer />
 				<m:Button text="{i18n>newLabel}"
 					type="Accept"
-					press="onCreateLabel"
+					press="onCreateBasisLabel"
 					icon="sap-icon://add" />
 				<m:Button text="{i18n>updateLabel}"
 					press="onUpdateSelectedLabel"

@@ -16,6 +16,7 @@ sap.ui.define([
             );
             var that = this;
 
+
             var oSettingsModel = new sap.ui.model.json.JSONModel();
             oSettingsModel.loadData(sPath);
             oSettingsModel.attachRequestCompleted(function () {
@@ -26,6 +27,9 @@ sap.ui.define([
                     .getProperty("/oDataUrl");
                 var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
                 that.getView().setModel(oModel);
+
+
+
             });
 
         },
@@ -33,11 +37,11 @@ sap.ui.define([
             return this.getView().getModel("i18n").getResourceBundle().getText(sKey);
         },
 
-        onCreateLabel: function () {
+        onCreateBasisLabel: function () {
             console.log("pressed");
             var that = this;
             // Step 1: Define JSONModel instance for new expert
-            var oNewBasisLabelModel = new sap.ui.model.json.JSONModel();
+            var oNewBasisLabelModel = new JSONModel();
             oNewBasisLabelModel = {
                 ZPRODUCT: "",
                 ZUCC_EXPERT_MO_1: "",
@@ -57,20 +61,24 @@ sap.ui.define([
                 ZUCC_EXPERT_FR_3: ""
             };
 
+
             // Step 2: Load the Fragment
             if (!this.byId("newBasisLabelDialog")) {
                 Fragment.load({
                     id: this.getView().getId(),
                     name: "iService_UI5.fragment.createBasisLabel",
                     controller: this
-                }).then(function (oDialog) {
+                }).then(function (basisDialog) {
                     // Connect dialog to the root view of this component (models, lifecycle)
-                    this.getView().addDependent(oDialog);
+                    this.getView().addDependent(basisDialog);
+                    console.log(this.getView().addDependent(basisDialog));
                     // Step 3: Set the model
-                    oDialog.setModel(this.oNewBasisLabelModel, "basisLabelCreate");
-                    console.log(oDialog.getModel("basisLabelCreate"));
+                    basisDialog.setModel(this.oNewBasisLabelModel, "basisLabelCreate");
+
+
+
                     // Step 4: Open the dialog
-                    oDialog.open();
+                    basisDialog.open();
                 }.bind(this));
             } else {
                 this.byId("newBasisLabelDialog").open();
@@ -78,27 +86,27 @@ sap.ui.define([
         },
 
         onSaveLabel: function () {
-            console.log(this.getView().getModel("basisLabelCreate"));
+            console.log(this.getView().getModel("labelCreate"));
             var that = this;
             // Step 1: Get the current data from the JSONModel instance
             // TODO: Change data according to expertCreate Model
             var oPayload = new JSONModel({
-                "ZPRODUCT": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZPRODUCT,
-                "ZUCC_EXPERT_MO_1": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_MO_1,
-                "ZUCC_EXPERT_MO_2": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_MO_2,
-                "ZUCC_EXPERT_MO_3": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_MO_3,
-                "ZUCC_EXPERT_DI_1": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_DI_1,
-                "ZUCC_EXPERT_DI_2": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_DI_2,
-                "ZUCC_EXPERT_DI_3": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_DI_3,
-                "ZUCC_EXPERT_MI_1": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_MI_1,
-                "ZUCC_EXPERT_MI_2": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_MI_2,
-                "ZUCC_EXPERT_MI_3": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_MI_3,
-                "ZUCC_EXPERT_DO_1": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_DO_1,
-                "ZUCC_EXPERT_DO_2": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_DO_2,
-                "ZUCC_EXPERT_DO_3": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_DO_3,
-                "ZUCC_EXPERT_FR_1": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_FR_1,
-                "ZUCC_EXPERT_FR_2": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_FR_2,
-                "ZUCC_EXPERT_FR_3": this.getView().getModel("basisLabelCreate").getProperty("/Label").ZUCC_EXPERT_FR_3
+                "ZPRODUCT": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZPRODUCT,
+                "ZUCC_EXPERT_MO_1": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_MO_1,
+                "ZUCC_EXPERT_MO_2": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_MO_2,
+                "ZUCC_EXPERT_MO_3": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_MO_3,
+                "ZUCC_EXPERT_DI_1": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_DI_1,
+                "ZUCC_EXPERT_DI_2": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_DI_2,
+                "ZUCC_EXPERT_DI_3": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_DI_3,
+                "ZUCC_EXPERT_MI_1": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_MI_1,
+                "ZUCC_EXPERT_MI_2": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_MI_2,
+                "ZUCC_EXPERT_MI_3": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_MI_3,
+                "ZUCC_EXPERT_DO_1": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_DO_1,
+                "ZUCC_EXPERT_DO_2": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_DO_2,
+                "ZUCC_EXPERT_DO_3": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_DO_3,
+                "ZUCC_EXPERT_FR_1": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_FR_1,
+                "ZUCC_EXPERT_FR_2": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_FR_2,
+                "ZUCC_EXPERT_FR_3": this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZUCC_EXPERT_FR_3
 
             });
 

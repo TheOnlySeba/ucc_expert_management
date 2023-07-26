@@ -26,6 +26,8 @@ sap.ui.define([
                     .getProperty("/oDataUrl");
                 var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
                 that.getView().setModel(oModel);
+
+
             });
 
         },
@@ -37,7 +39,7 @@ sap.ui.define([
             console.log("pressed");
             var that = this;
             // Step 1: Define JSONModel instance for new expert
-            var oNewLabelModel = new sap.ui.model.json.JSONModel();
+            var oNewLabelModel = new JSONModel();
             oNewLabelModel = {
                 ZPRODUCT: "",
                 ZUCC_EXPERT_MO_1: "",
@@ -64,8 +66,10 @@ sap.ui.define([
                     name: "iService_UI5.fragment.createLabel",
                     controller: this
                 }).then(function (oDialog) {
+                    console.log(this.getView().getId());
                     // Connect dialog to the root view of this component (models, lifecycle)
                     this.getView().addDependent(oDialog);
+                    console.log(this.getView().addDependent(oDialog));
                     // Step 3: Set the model
                     oDialog.setModel(this.oNewLabelModel, "labelCreate");
                     console.log(oDialog.getModel("labelCreate"));

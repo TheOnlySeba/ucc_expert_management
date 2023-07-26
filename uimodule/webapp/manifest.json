@@ -37,6 +37,12 @@
         "uri": "model/labelCreate.json",
         "preload":true,
         "settings":{}
+      },
+      "basisLabelCreate": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/basisLabelCreate.json",
+        "preload": true,
+        "settings": {}
       }
     },
     "routing": {
