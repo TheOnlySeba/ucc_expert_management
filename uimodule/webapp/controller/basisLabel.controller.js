@@ -8,7 +8,7 @@ sap.ui.define([
 ], function (Controller, MessageToast, Fragment, JSONModel, DateFormat, Dialog) {
     "use strict";
 
-    return Controller.extend("iService_UI5.controller.label", {
+    return Controller.extend("iService_UI5.controller.basisLabel", {
         onInit: function () {
             var sPath = $.sap.getModulePath(
                 "iService_UI5",
