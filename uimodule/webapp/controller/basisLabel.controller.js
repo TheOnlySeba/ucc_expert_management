@@ -58,7 +58,7 @@ sap.ui.define([
             };
 
             // Step 2: Load the Fragment
-            if (!this.byId("newLabelDialog")) {
+            if (!this.byId("newBasisLabelDialog")) {
                 Fragment.load({
                     id: this.getView().getId(),
                     name: "iService_UI5.fragment.createBasisLabel",
@@ -67,12 +67,12 @@ sap.ui.define([
                     // Connect dialog to the root view of this component (models, lifecycle)
                     this.getView().addDependent(oDialog);
                     // Step 3: Set the model
-                    oDialog.setModel(this.oNewExpertModel, "basisLabelCreate");
+                    oDialog.setModel(this.oNewLabelModel, "basisLabelCreate");
                     // Step 4: Open the dialog
                     oDialog.open();
                 }.bind(this));
             } else {
-                this.byId("newLabelDialog").open();
+                this.byId("newBasisLabelDialog").open();
             }
         },
 
@@ -110,7 +110,7 @@ sap.ui.define([
                 success: function () {
                     MessageToast.show("Label created successfully!");
                     that.onClear();
-                    that.byId("newLabelDialog").close();
+                    that.byId("newBasisLabelDialog").close();
                 }.bind(this),
                 error: function () {
                     MessageToast.show("Error while creating the label.");
@@ -119,7 +119,7 @@ sap.ui.define([
         },
         onCancelSave: function () {
             var that = this;
-            that.byId("newLabelDialog").close();
+            that.byId("newBasisLabelDialog").close();
             MessageToast.show(this.geti18n("labelNotCreated"));
         },
 

@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form">
-    <Dialog id="newLabelDialog"
+    <Dialog id="newBasisLabelDialog"
         title="{i18n>createLabel}">
         <HBox>
             <items>

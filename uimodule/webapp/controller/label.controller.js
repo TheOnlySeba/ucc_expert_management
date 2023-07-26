@@ -67,7 +67,7 @@ sap.ui.define([
                     // Connect dialog to the root view of this component (models, lifecycle)
                     this.getView().addDependent(oDialog);
                     // Step 3: Set the model
-                    oDialog.setModel(this.oNewExpertModel, "labelCreate");
+                    oDialog.setModel(this.oNewLabelModel, "labelCreate");
                     // Step 4: Open the dialog
                     oDialog.open();
                 }.bind(this));
