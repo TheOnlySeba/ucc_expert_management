@@ -150,7 +150,7 @@ sap.ui.define([
                 press: function () {
                     var serviceURL = that
                         .getView()
-                        .getModel("Labels")
+                        .getModel("basisLabels")
                         .getProperty("/oDataUrl");
                     var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
 
@@ -177,6 +177,7 @@ sap.ui.define([
 
                     var updateLabel = parseInt(sap.ui.getCore().byId("updatezlabel_id").getValue());
                     var dPath = "/zcrm_basis_labelSet(ZLABEL_ID=" + updateLabel + ")";
+                    console.log(oUpdatedLabel);
 
                     oModel.update(dPath, oUpdatedLabel, {
                         success: function () {
