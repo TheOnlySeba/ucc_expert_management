@@ -8,7 +8,7 @@ resources:
       webapp: uimodule/webapp
 framework:
   name: SAPUI5
-  version: 1.91.0
+  version: 1.97.0
   libraries:
     - name: sap.ui.core
     - name: sap.m
