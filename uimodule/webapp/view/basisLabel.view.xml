@@ -1,6 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
 	xmlns:m="sap.m"
     xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartfield="sap.ui.comp.smartfield"
 	controllerName="iService_UI5.controller.basisLabel">
 
 	<m:Page title="{i18n>BasisOverview}"
@@ -21,7 +22,7 @@
 					press="onDeleteSelectedLabel"
 					icon="sap-icon://delete" />
 			</m:OverflowToolbar>
-			<smartTable:SmartTable customizeConfig="{'textInEditModeSource': {'*': 'ValueList'}}"  header="Line Items" enableAutoColumnWidth="true" editTogglable="true" showRowCount="true" initiallyVisibleFields="ZPRODUCT,ZUCC_EXPERT_MO_1" id="basisLabelTable" requestAtLeastFields="ZLABEL_ID" ignoreFromPersonalisation="ZLABEL_ID" entitySet="zcrm_basis_labelSet" tableType="Table" useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+			<smartTable:SmartTable header="Line Items"  editTogglable="true" showRowCount="true" initiallyVisibleFields="ZPRODUCT,ZUCC_EXPERT_MO_1" id="basisLabelTable" requestAtLeastFields="ZLABEL_ID" ignoreFromPersonalisation="ZLABEL_ID" entitySet="zcrm_basis_labelSet" tableType="Table" useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
 				<smartTable:layoutData>
                     <m:FlexItemData growFactor="1" baseSize="0%" />
                 </smartTable:layoutData>
