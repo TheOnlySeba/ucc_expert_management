@@ -146,234 +146,251 @@ sap.ui.define([
 
         onUpdateSelectedLabel: function (oEvent) {
             var that = this;
+            Fragment.load({
+                name: "iService_UI5.fragment.editBasisLabel",
+                controller: this
+            }).then(function (oFragment) {
+                that.oMultiEditDialog = oFragment;
+                that.getView().addDependent(that.oMultiEditDialog);
 
-            var cancelButton = new sap.m.Button({
-                text: that.geti18n("cancel"),
-                type: sap.m.ButtonType.Default,
-                press: function () {
-                    sap.ui.getCore().byId("updatePopup").destroy();
-                },
-            });
-
-            var updateButton = new sap.m.Button({
-                text: that.geti18n("update"),
-                type: sap.m.ButtonType.Accept,
-                press: function () {
-                    var serviceURL = that
-                        .getView()
-                        .getModel("basisLabels")
-                        .getProperty("/oDataUrl");
-                    var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
-
-                    var oUpdatedLabel = {
-                        ZLABEL_ID: parseInt(sap.ui.getCore().byId("updatezlabel_id").getValue()),
-                        ZPRODUCT: sap.ui.getCore().byId("updatezproduct").getValue(),
-                        ZUCC_EXPERT_MO_1: sap.ui.getCore().byId("updatemo1").getValue(),
-                        ZUCC_EXPERT_MO_2: sap.ui.getCore().byId("updatemo2").getValue(),
-                        ZUCC_EXPERT_MO_3: sap.ui.getCore().byId("updatemo3").getValue(),
-                        ZUCC_EXPERT_DI_1: sap.ui.getCore().byId("updatedi1").getValue(),
-                        ZUCC_EXPERT_DI_2: sap.ui.getCore().byId("updatedi2").getValue(),
-                        ZUCC_EXPERT_DI_3: sap.ui.getCore().byId("updatedi3").getValue(),
-                        ZUCC_EXPERT_MI_1: sap.ui.getCore().byId("updatemi1").getValue(),
-                        ZUCC_EXPERT_MI_2: sap.ui.getCore().byId("updatemi2").getValue(),
-                        ZUCC_EXPERT_MI_3: sap.ui.getCore().byId("updatemi3").getValue(),
-                        ZUCC_EXPERT_DO_1: sap.ui.getCore().byId("updatedo1").getValue(),
-                        ZUCC_EXPERT_DO_2: sap.ui.getCore().byId("updatedo2").getValue(),
-                        ZUCC_EXPERT_DO_3: sap.ui.getCore().byId("updatedo3").getValue(),
-                        ZUCC_EXPERT_FR_1: sap.ui.getCore().byId("updatefr1").getValue(),
-                        ZUCC_EXPERT_FR_2: sap.ui.getCore().byId("updatefr2").getValue(),
-                        ZUCC_EXPERT_FR_3: sap.ui.getCore().byId("updatefr3").getValue(),
-
-                    };
-
-                    var updateLabel = parseInt(sap.ui.getCore().byId("updatezlabel_id").getValue());
-                    var dPath = "/zcrm_basis_labelSet(ZLABEL_ID=" + updateLabel + ")";
-                    console.log(oUpdatedLabel);
-
-                    oModel.update(dPath, oUpdatedLabel, {
-                        success: function () {
-
-
-                            MessageToast.show("Successfully updated!");
-                            oModel.refresh();
-                            that.onClear();
-                            sap.ui.getCore().byId("updatePopup").destroy();
-                        },
-                        error: function (oError) {
-                            sap.m.MessageToast.show("Error during label update");
-                        },
-                    });
-                },
-            });
-
-            console.log(that.getView().byId("basisLabelTable").getTable().getSelectedItems());
-
-            if (that.getView().byId("basisLabelTable").getTable().getSelectedItems() != null) {
-
-
-                var selectedItem = that
-                    .getView()
-                    .byId("basisLabelTable")
-                    .getTable().getSelectedItem();
-
-                console.log(selectedItem);
-
-
-                var oDialog = new sap.m.Dialog("updatePopup", {
-                    title: that.geti18n("updatePopuplabel"),
-                    modal: true,
-                    contentWidth: "4em",
-                    buttons: [updateButton, cancelButton],
-                    content: [
-                        new sap.m.Label({
-                            text: that.geti18n("zlabel_id"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatezlabel_id",
-                            value: selectedItem.getProperty("ZLABEL_ID"),
-                            editable: false,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("zproduct"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatezproduct",
-                            value: selectedItem.getProperty("ZPRODUCT"),
-                            editable: false,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Mo1"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatemo1",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_MO_1"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Mo2"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatemo2",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_MO_2"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Mo3"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatemo3",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_MO_3"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Di1"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatedi1",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_DI_1"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Di2"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatedi2",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_DI_2"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Di3"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatedi3",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_DI_3"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Mi1"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatemi1",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_MI_1"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Mi2"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatemi2",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_MI_2"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Mi3"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatemi3",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_MI_3"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Do1"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatedo1",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_DO_1"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Do2"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatedo2",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_DO_2"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Do3"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatedo3",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_DO_3"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Fr1"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatefr1",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_FR_1"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Fr2"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatefr2",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_FR_2"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Fr3"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatefr3",
-                            value: selectedItem.getProperty("ZUCC_EXPERT_FR_3"),
-                            editable: true,
-                        }),
-
-
-                    ],
-                });
-            }
-            if (selectedItem != null) {
-                sap.ui.getCore().byId("updatePopup").open();
-
-            } else {
-                MessageToast.show(that.geti18n("errorSelectFirst"));
-                sap.ui.getCore().byId("updatePopup").destroy();
-            }
+                that.oMultiEditDialog.setEscapeHandler(function () {
+                    that.onCloseDialog();
+                }.bind(this));
+                console.log(that.getView().byId("basisLabelTable"));
+                that.oMultiEditDialog.getContent()[0].setContexts(that.getView().byId("basisLabelTable").getTable().getSelectedContexts());
+                syncStyleClass("sapUiSizeCompact", that.getView(), that.oMultiEditDialog);
+                that.oMultiEditDialog.open();
+            }.bind(this));
         },
+        // var that = this;
+
+        // var cancelButton = new sap.m.Button({
+        //     text: that.geti18n("cancel"),
+        //     type: sap.m.ButtonType.Default,
+        //     press: function () {
+        //         sap.ui.getCore().byId("updatePopup").destroy();
+        //     },
+        // });
+
+        // var updateButton = new sap.m.Button({
+        //     text: that.geti18n("update"),
+        //     type: sap.m.ButtonType.Accept,
+        //     press: function () {
+        //         var serviceURL = that
+        //             .getView()
+        //             .getModel("basisLabels")
+        //             .getProperty("/oDataUrl");
+        //         var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+
+        //         var oUpdatedLabel = {
+        //             ZLABEL_ID: parseInt(sap.ui.getCore().byId("updatezlabel_id").getValue()),
+        //             ZPRODUCT: sap.ui.getCore().byId("updatezproduct").getValue(),
+        //             ZUCC_EXPERT_MO_1: sap.ui.getCore().byId("updatemo1").getValue(),
+        //             ZUCC_EXPERT_MO_2: sap.ui.getCore().byId("updatemo2").getValue(),
+        //             ZUCC_EXPERT_MO_3: sap.ui.getCore().byId("updatemo3").getValue(),
+        //             ZUCC_EXPERT_DI_1: sap.ui.getCore().byId("updatedi1").getValue(),
+        //             ZUCC_EXPERT_DI_2: sap.ui.getCore().byId("updatedi2").getValue(),
+        //             ZUCC_EXPERT_DI_3: sap.ui.getCore().byId("updatedi3").getValue(),
+        //             ZUCC_EXPERT_MI_1: sap.ui.getCore().byId("updatemi1").getValue(),
+        //             ZUCC_EXPERT_MI_2: sap.ui.getCore().byId("updatemi2").getValue(),
+        //             ZUCC_EXPERT_MI_3: sap.ui.getCore().byId("updatemi3").getValue(),
+        //             ZUCC_EXPERT_DO_1: sap.ui.getCore().byId("updatedo1").getValue(),
+        //             ZUCC_EXPERT_DO_2: sap.ui.getCore().byId("updatedo2").getValue(),
+        //             ZUCC_EXPERT_DO_3: sap.ui.getCore().byId("updatedo3").getValue(),
+        //             ZUCC_EXPERT_FR_1: sap.ui.getCore().byId("updatefr1").getValue(),
+        //             ZUCC_EXPERT_FR_2: sap.ui.getCore().byId("updatefr2").getValue(),
+        //             ZUCC_EXPERT_FR_3: sap.ui.getCore().byId("updatefr3").getValue(),
+
+        //         };
+
+        //         var updateLabel = parseInt(sap.ui.getCore().byId("updatezlabel_id").getValue());
+        //         var dPath = "/zcrm_basis_labelSet(ZLABEL_ID=" + updateLabel + ")";
+        //         console.log(oUpdatedLabel);
+
+        //         oModel.update(dPath, oUpdatedLabel, {
+        //             success: function () {
+
+
+        //                 MessageToast.show("Successfully updated!");
+        //                 oModel.refresh();
+        //                 that.onClear();
+        //                 sap.ui.getCore().byId("updatePopup").destroy();
+        //             },
+        //             error: function (oError) {
+        //                 sap.m.MessageToast.show("Error during label update");
+        //             },
+        //         });
+        //     },
+        // });
+
+        // console.log(that.getView().byId("basisLabelTable").getTable().getSelectedItems());
+
+        // if (that.getView().byId("basisLabelTable").getTable().getSelectedItems() != null) {
+
+
+        //     var selectedItem = that
+        //         .getView()
+        //         .byId("basisLabelTable")
+        //         .getTable().getSelectedItem();
+
+        //     console.log(selectedItem);
+
+
+        //     var oDialog = new sap.m.Dialog("updatePopup", {
+        //         title: that.geti18n("updatePopuplabel"),
+        //         modal: true,
+        //         contentWidth: "4em",
+        //         buttons: [updateButton, cancelButton],
+        //         content: [
+        //             new sap.m.Label({
+        //                 text: that.geti18n("zlabel_id"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatezlabel_id",
+        //                 value: selectedItem.getProperty("ZLABEL_ID"),
+        //                 editable: false,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("zproduct"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatezproduct",
+        //                 value: selectedItem.getProperty("ZPRODUCT"),
+        //                 editable: false,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Mo1"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatemo1",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_MO_1"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Mo2"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatemo2",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_MO_2"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Mo3"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatemo3",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_MO_3"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Di1"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatedi1",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_DI_1"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Di2"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatedi2",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_DI_2"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Di3"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatedi3",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_DI_3"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Mi1"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatemi1",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_MI_1"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Mi2"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatemi2",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_MI_2"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Mi3"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatemi3",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_MI_3"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Do1"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatedo1",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_DO_1"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Do2"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatedo2",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_DO_2"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Do3"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatedo3",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_DO_3"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Fr1"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatefr1",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_FR_1"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Fr2"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatefr2",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_FR_2"),
+        //                 editable: true,
+        //             }),
+        //             new sap.m.Label({
+        //                 text: that.geti18n("Fr3"),
+        //             }),
+        //             new sap.m.Input({
+        //                 id: "updatefr3",
+        //                 value: selectedItem.getProperty("ZUCC_EXPERT_FR_3"),
+        //                 editable: true,
+        //             }),
+
+
+        //         ],
+        //     });
+        // }
+        // if (selectedItem != null) {
+        //     sap.ui.getCore().byId("updatePopup").open();
+
+        // } else {
+        //     MessageToast.show(that.geti18n("errorSelectFirst"));
+        //     sap.ui.getCore().byId("updatePopup").destroy();
+        // }
+        //    },
 
         onDeleteSelectedLabel: function () {
             var that = this;

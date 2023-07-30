@@ -12,7 +12,8 @@
     "rootView": {
       "viewName": "iService_UI5.view.main",
       "type": "XML",
-      "async": true
+      "async": true,
+      "id": "app"
     },
     "models": {
       "Settings": {
