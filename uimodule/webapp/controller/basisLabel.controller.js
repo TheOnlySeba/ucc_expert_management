@@ -15,6 +15,7 @@ sap.ui.define([
                 "/model/applicationProperties.json"
             );
             var that = this;
+            var oTable;
 
 
             var oSettingsModel = new sap.ui.model.json.JSONModel();
@@ -27,11 +28,21 @@ sap.ui.define([
                     .getProperty("/oDataUrl");
                 var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
                 that.getView().setModel(oModel);
+                oTable = that.getView().byId("basisLabelTable").getTable();
+                oTable.setMode("MultiSelect");
+                oTable.attachSelectionChange(that.onTableSelection(), this);
+
 
 
 
             });
 
+        },
+
+        onTableSelection: function () {
+            var that = this;
+            var aSelectedItems = that.getView().byId("basisLabelTable").getTable().getSelectedItems();
+            console.log(aSelectedItems);
         },
         geti18n: function (sKey) {
             return this.getView().getModel("i18n").getResourceBundle().getText(sKey);
@@ -133,7 +144,7 @@ sap.ui.define([
             MessageToast.show(this.geti18n("labelNotCreated"));
         },
 
-        onUpdateSelectedLabel: function () {
+        onUpdateSelectedLabel: function (oEvent) {
             var that = this;
 
             var cancelButton = new sap.m.Button({
@@ -195,12 +206,18 @@ sap.ui.define([
                 },
             });
 
-            if (that.getView().byId("basisLabelTable").getSelectedItem() != null) {
+            console.log(that.getView().byId("basisLabelTable").getTable().getSelectedItems());
+
+            if (that.getView().byId("basisLabelTable").getTable().getSelectedItems() != null) {
+
+
                 var selectedItem = that
                     .getView()
                     .byId("basisLabelTable")
-                    .getSelectedItem()
-                    .getBindingContext();
+                    .getTable().getSelectedItem();
+
+                console.log(selectedItem);
+
 
                 var oDialog = new sap.m.Dialog("updatePopup", {
                     title: that.geti18n("updatePopuplabel"),
@@ -351,6 +368,7 @@ sap.ui.define([
             }
             if (selectedItem != null) {
                 sap.ui.getCore().byId("updatePopup").open();
+
             } else {
                 MessageToast.show(that.geti18n("errorSelectFirst"));
                 sap.ui.getCore().byId("updatePopup").destroy();

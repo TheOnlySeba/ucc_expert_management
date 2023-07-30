@@ -2,13 +2,14 @@
 	xmlns:m="sap.m"
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	controllerName="iService_UI5.controller.basisLabel">
 
 	<m:Page title="{i18n>BasisOverview}"
 		class="sapUiContentPadding"
 		showHeader="false">
 		<m:content>
-			<m:OverflowToolbar>
+			<!-- <m:OverflowToolbar>
 				<m:ToolbarSpacer />
 				<m:Button text="{i18n>newLabel}"
 					type="Accept"
@@ -21,8 +22,17 @@
 					type="Reject"
 					press="onDeleteSelectedLabel"
 					icon="sap-icon://delete" />
-			</m:OverflowToolbar>
-			<smartTable:SmartTable header="Line Items"  editTogglable="true" showRowCount="true" initiallyVisibleFields="ZPRODUCT,ZUCC_EXPERT_MO_1" id="basisLabelTable" requestAtLeastFields="ZLABEL_ID" ignoreFromPersonalisation="ZLABEL_ID" entitySet="zcrm_basis_labelSet" tableType="Table" useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+			</m:OverflowToolbar> -->
+			<smartTable:SmartTable header="Line Items" tableType="ResponsiveTable"   showRowCount="true" initiallyVisibleFields="ZPRODUCT,ZUCC_EXPERT_MO_1" id="basisLabelTable" requestAtLeastFields="ZLABEL_ID" ignoreFromPersonalisation="ZLABEL_ID, Mandt" entitySet="zcrm_basis_labelSet"  useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+            <smartTable:customToolbar>
+                <m:OverflowToolbar design="Transparent"
+                >
+                    <m:ToolbarSpacer />
+                    <m:OverflowToolbarButton icon="sap-icon://add" press="onCreateBasisLabel" />
+                    <m:OverflowToolbarButton icon="sap-icon://edit" press="onUpdateSelectedLabel" />
+                    <m:OverflowToolbarButton icon="sap-icon://delete" press="onDeleteSelectedLabel" />
+                </m:OverflowToolbar>
+            </smartTable:customToolbar>
 				<smartTable:layoutData>
                     <m:FlexItemData growFactor="1" baseSize="0%" />
                 </smartTable:layoutData>
