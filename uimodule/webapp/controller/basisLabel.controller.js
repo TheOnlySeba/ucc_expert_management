@@ -131,7 +131,7 @@ sap.ui.define([
                 success: function () {
                     MessageToast.show("Label created successfully!");
                     that.onClear();
-                    that.byId("newBasisLabelDialog").close();
+                    that.byId("multipleEditingDialog").close();
                 }.bind(this),
                 error: function () {
                     MessageToast.show("Error while creating the label.");
@@ -139,8 +139,11 @@ sap.ui.define([
             });
         },
         onCancelSave: function () {
-            var that = this;
-            that.byId("newBasisLabelDialog").close();
+            // var that = this;
+            // that.byId("multipleEditingDialog").close();
+            this.oMultiEditDialog.close();
+            this.oMultiEditDialog.destroy();
+            this.oMultiEditDialog = null;
             MessageToast.show(this.geti18n("labelNotCreated"));
         },
 
@@ -158,9 +161,72 @@ sap.ui.define([
                 }.bind(this));
                 console.log(that.getView().byId("basisLabelTable"));
                 that.oMultiEditDialog.getContent()[0].setContexts(that.getView().byId("basisLabelTable").getTable().getSelectedContexts());
-                syncStyleClass("sapUiSizeCompact", that.getView(), that.oMultiEditDialog);
+
                 that.oMultiEditDialog.open();
             }.bind(this));
+        },
+
+        onDialogSaveButton: function () {
+            var oMultiEditContainer = this.oMultiEditDialog.getContent()[0];
+
+            this.oMultiEditDialog.setBusy(true);
+            oMultiEditContainer.getErroneousFieldsAndTokens().then(function (aErrorFields) {
+                this.oMultiEditDialog.setBusy(false);
+                if (aErrorFields.length === 0) {
+                    this._saveChanges();
+                }
+            }.bind(this)).catch(function () {
+                this.oMultiEditDialog.setBusy(false);
+            }.bind(this));
+        },
+        _saveChanges: function () {
+            var oMultiEditContainer = this.oMultiEditDialog.getContent()[0],
+                that = this,
+                aUpdatedContexts,
+                oContext,
+                oUpdatedData,
+                oObjectToUpdate,
+                oUpdatedDataCopy;
+
+            var fnHandler = function (oField) {
+                var sPropName = oField.getPropertyName(),
+                    sUomPropertyName = oField.getUnitOfMeasurePropertyName();
+                if (!oField.getApplyToEmptyOnly() || !oObjectToUpdate[sPropName]
+                    || (typeof oObjectToUpdate[sPropName] == "string" && !oObjectToUpdate[sPropName].trim())) {
+                    oUpdatedDataCopy[sPropName] = oUpdatedData[sPropName];
+                }
+                if (oField.isComposite()) {
+                    if (!oField.getApplyToEmptyOnly() || !oObjectToUpdate[sUomPropertyName]) {
+                        oUpdatedDataCopy[sUomPropertyName] = oUpdatedData[sUomPropertyName];
+                    }
+                }
+            };
+
+            MessageToast.show("Save action started", {
+                onClose: function () {
+                    oMultiEditContainer.getAllUpdatedContexts(true).then(function (result) {
+                        MessageToast.show("Updated contexts available", {
+                            onClose: function () {
+                                aUpdatedContexts = result;
+                                for (var i = 0; i < aUpdatedContexts.length; i++) {
+                                    oContext = aUpdatedContexts[i].context;
+                                    oUpdatedData = aUpdatedContexts[i].data;
+                                    oObjectToUpdate = oContext.getModel().getObject(oContext.getPath());
+                                    oUpdatedDataCopy = {};
+                                    this._getFields().filter(function (oField) {
+                                        return !oField.isKeepExistingSelected();
+                                    }).forEach(fnHandler);
+                                    oContext.getModel().update(oContext.getPath(), oUpdatedDataCopy);
+                                }
+                                MessageToast.show("Model was updated");
+
+                                that.onCloseDialog();
+                            }.bind(this)
+                        });
+                    }.bind(oMultiEditContainer));
+                }
+            });
+            this.oMultiEditDialog.close();
         },
         // var that = this;
 

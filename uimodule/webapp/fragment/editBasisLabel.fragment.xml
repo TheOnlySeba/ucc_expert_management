@@ -128,7 +128,7 @@
 		</content>
 		<buttons>
 			<Button text="Save" press="onDialogSaveButton" type="Emphasized"/>
-			<Button text="Cancel" press="onCloseDialog"/>
+			<Button text="Cancel" press="onCancelSave"/>
 		</buttons>
 	</Dialog>
 </core:FragmentDefinition>
