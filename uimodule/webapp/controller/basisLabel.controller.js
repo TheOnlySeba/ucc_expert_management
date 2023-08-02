@@ -97,7 +97,7 @@ sap.ui.define([
         },
 
         onSaveLabel: function () {
-            console.log(this.getView().getModel("labelCreate"));
+
             var that = this;
             // Step 1: Get the current data from the JSONModel instance
             // TODO: Change data according to expertCreate Model
@@ -122,6 +122,7 @@ sap.ui.define([
             });
 
 
+            console.log(this.getView().getModel("basisLabelCreate").getProperty("/BasisLabel").ZPRODUCT);
 
             // Step 2: Get ODataModel instance and create new entity
 
@@ -129,18 +130,23 @@ sap.ui.define([
             var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
             oModel.create("/zcrm_basis_labelSet", oPayload.oData, {
                 success: function () {
+                    console.log(oPayload.oData);
                     MessageToast.show("Label created successfully!");
                     that.onClear();
-                    that.byId("multipleEditingDialog").close();
+                    that.byId("newBasisLabelDialog").close();
                 }.bind(this),
                 error: function () {
                     MessageToast.show("Error while creating the label.");
                 }
             });
         },
+
+        onCancelCreate: function () {
+            var that = this;
+            that.byId("newBasisLabelDialog").close();
+        },
         onCancelSave: function () {
-            // var that = this;
-            // that.byId("multipleEditingDialog").close();
+
             this.oMultiEditDialog.close();
             this.oMultiEditDialog.destroy();
             this.oMultiEditDialog = null;
@@ -348,7 +354,7 @@ sap.ui.define([
                                 }
                                 MessageToast.show("Model was updated");
 
-                                that.onCloseDialog();
+                                that.onCancelDelete();
                             }.bind(this)
                         });
                     }.bind(oMultiDeleteContainer));

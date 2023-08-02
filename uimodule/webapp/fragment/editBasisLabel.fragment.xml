@@ -35,91 +35,71 @@
 										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MO_2"/>
 									</sf:elements>
 								</sf:GroupElement>
-								<!-- <sf:GroupElement>
+								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="Amount" useApplyToEmptyOnly="true"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MO_3"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field
-												propertyName="Birthday"
-												description="Fill the year of birth of a person. The age will be updated automatically."
-												useApplyToEmptyOnly="true"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DI_1"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="Decimal" useApplyToEmptyOnly="true"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DI_2"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="DeliveryTime" useApplyToEmptyOnly="true"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DI_3"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="Department" useApplyToEmptyOnly="true"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MI_1"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="Distance" useApplyToEmptyOnly="true"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MI_2"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="Email"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MI_3"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="FirstName"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DO_1"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="Gender"
-															  app:defaultDropDownDisplayBehaviour="idAndDescription"
-															  useApplyToEmptyOnly="true">
-											<smartmultiedit:configuration>
-												<smartField:Configuration controlType="dropDownList"
-																		  displayBehaviour="idOnly"/>
-											</smartmultiedit:configuration>
-										</smartmultiedit:Field>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DO_2"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="Guid"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DO_3"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="LastName" useApplyToEmptyOnly="true"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_FR_1"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="Phone"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_FR_2"/>
 									</sf:elements>
 								</sf:GroupElement>
 								<sf:GroupElement>
 									<sf:elements>
-										<smartmultiedit:Field propertyName="Price" useApplyToEmptyOnly="true"/>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_FR_3"/>
 									</sf:elements>
 								</sf:GroupElement>
-								<sf:GroupElement>
-									<sf:elements>
-										<smartmultiedit:Field propertyName="Salary" useApplyToEmptyOnly="true"/>
-									</sf:elements>
-								</sf:GroupElement>
-								<sf:GroupElement>
-									<sf:elements>
-										<smartmultiedit:Field propertyName="URL" useApplyToEmptyOnly="true"/>
-									</sf:elements>
-								</sf:GroupElement> -->
 							</sf:Group>
 						</sf:groups>
 					</sf:SmartForm>
