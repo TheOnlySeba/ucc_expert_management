@@ -52,25 +52,28 @@ sap.ui.define([
             console.log("pressed");
             var that = this;
             // Step 1: Define JSONModel instance for new expert
-            var oNewBasisLabelModel = new JSONModel();
-            oNewBasisLabelModel = {
-                ZPRODUCT: "",
-                ZUCC_EXPERT_MO_1: "",
-                ZUCC_EXPERT_MO_2: "",
-                ZUCC_EXPERT_MO_3: "",
-                ZUCC_EXPERT_DI_1: "",
-                ZUCC_EXPERT_DI_2: "",
-                ZUCC_EXPERT_DI_3: "",
-                ZUCC_EXPERT_MI_1: "",
-                ZUCC_EXPERT_MI_2: "",
-                ZUCC_EXPERT_MI_3: "",
-                ZUCC_EXPERT_DO_1: "",
-                ZUCC_EXPERT_DO_2: "",
-                ZUCC_EXPERT_DO_3: "",
-                ZUCC_EXPERT_FR_1: "",
-                ZUCC_EXPERT_FR_2: "",
-                ZUCC_EXPERT_FR_3: ""
+            var oNewBasisLabelModelData = {
+                BasisLabel: {
+                    ZPRODUCT: "",
+                    ZUCC_EXPERT_MO_1: "",
+                    ZUCC_EXPERT_MO_2: "",
+                    ZUCC_EXPERT_MO_3: "",
+                    ZUCC_EXPERT_DI_1: "",
+                    ZUCC_EXPERT_DI_2: "",
+                    ZUCC_EXPERT_DI_3: "",
+                    ZUCC_EXPERT_MI_1: "",
+                    ZUCC_EXPERT_MI_2: "",
+                    ZUCC_EXPERT_MI_3: "",
+                    ZUCC_EXPERT_DO_1: "",
+                    ZUCC_EXPERT_DO_2: "",
+                    ZUCC_EXPERT_DO_3: "",
+                    ZUCC_EXPERT_FR_1: "",
+                    ZUCC_EXPERT_FR_2: "",
+                    ZUCC_EXPERT_FR_3: ""
+                }
             };
+            var oNewBasisLabelModel = new JSONModel(oNewBasisLabelModelData);
+            this.getView().setModel(oNewBasisLabelModel, "basisLabelCreate");
 
 
             // Step 2: Load the Fragment
@@ -82,9 +85,9 @@ sap.ui.define([
                 }).then(function (basisDialog) {
                     // Connect dialog to the root view of this component (models, lifecycle)
                     this.getView().addDependent(basisDialog);
-                    console.log(this.getView().addDependent(basisDialog));
+
                     // Step 3: Set the model
-                    basisDialog.setModel(this.oNewBasisLabelModel, "basisLabelCreate");
+                    basisDialog.setModel(this.getView().getModel("basisLabelCreate"), "basisLabelCreate");
 
 
 
@@ -236,73 +239,6 @@ sap.ui.define([
         },
 
 
-        // onDeleteSelectedLabel: function () {
-
-        //     var that = this;
-
-
-        //     var cancelButton = new sap.m.Button({
-        //         text: that.geti18n("cancel"),
-        //         type: sap.m.ButtonType.Default,
-        //         press: function () {
-        //             sap.ui.getCore().byId("deletePopup").destroy();
-        //         },
-        //     });
-
-        //     var deleteButton = new sap.m.Button({
-        //         text: that.geti18n("delete"),
-        //         type: sap.m.ButtonType.Reject,
-        //         press: function () {
-        //             var serviceURL = that
-        //                 .getView()
-        //                 .getModel("basisLabels")
-        //                 .getProperty("/oDataUrl");
-        //             var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
-
-        //             var deleteLabel = parseInt(sap.ui.getCore().byId("deleteLabel").getValue());
-        //             var dPath = "/zcrm_basis_labelSet(ZLABEL_ID=" + deleteLabel + ")";
-        //             oModel.remove(dPath, {
-        //                 success: function () {
-        //                     MessageToast.show("Successfully deleted");
-        //                     oModel.refresh();
-        //                     that.onClear();
-        //                     sap.ui.getCore().byId("deletePopup").destroy();
-
-        //                 },
-        //                 error: function () {
-        //                     MessageToast.show("Error during Expert deletion");
-        //                 },
-        //             });
-        //         },
-        //     });
-
-        //     if (that.getView().byId("basisLabelTable").getTable().getSelectedContexts() != null) {
-        //         var selectedItem = that.getView().byId("basisLabelTable").getTable().getSelectedContexts();
-
-        //         var oDialog = new Dialog("deletePopup", {
-        //             title: that.geti18n("deletePopupLabel"),
-        //             modal: true,
-        //             contentWidth: "1em",
-        //             buttons: [deleteButton, cancelButton],
-        //             content: [
-        //                 new sap.m.Label({
-        //                     text: that.geti18n("label"),
-        //                 }),
-        //                 new sap.m.Input({
-        //                     id: "deleteLabel",
-        //                     value: selectedItem.getProperty("ZLABEL_ID"),
-        //                     editable: false,
-        //                 }),
-        //             ],
-        //         });
-        //     }
-        //     if (selectedItem != null) {
-        //         sap.ui.getCore().byId("deletePopup").open();
-        //     } else {
-        //         MessageToast.show(that.geti18n("errorSelectFirst"));
-        //         sap.ui.getCore().byId("deletePopup").destroy();
-        //     }
-        // },
 
         onDeleteSelectedLabel: function () {
             var that = this;
