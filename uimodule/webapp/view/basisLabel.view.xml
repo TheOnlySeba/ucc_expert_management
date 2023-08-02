@@ -9,21 +9,7 @@
 		class="sapUiContentPadding"
 		showHeader="false">
 		<m:content>
-			<!-- <m:OverflowToolbar>
-				<m:ToolbarSpacer />
-				<m:Button text="{i18n>newLabel}"
-					type="Accept"
-					press="onCreateBasisLabel"
-					icon="sap-icon://add" />
-				<m:Button text="{i18n>updateLabel}"
-					press="onUpdateSelectedLabel"
-					icon="sap-icon://edit" />
-				<m:Button text="{i18n>deleteLabel}"
-					type="Reject"
-					press="onDeleteSelectedLabel"
-					icon="sap-icon://delete" />
-			</m:OverflowToolbar> -->
-			<smartTable:SmartTable header="Line Items" tableType="ResponsiveTable"   showRowCount="true" initiallyVisibleFields="ZPRODUCT,ZUCC_EXPERT_MO_1" id="basisLabelTable" requestAtLeastFields="ZLABEL_ID" ignoreFromPersonalisation="ZLABEL_ID, Mandt" entitySet="zcrm_basis_labelSet"  useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+			<smartTable:SmartTable header="Basis Produkte" tableType="ResponsiveTable"   showRowCount="true" initiallyVisibleFields="ZPRODUCT,ZUCC_EXPERT_MO_1" id="basisLabelTable" requestAtLeastFields="ZLABEL_ID" ignoreFromPersonalisation="ZLABEL_ID, Mandt" entitySet="zcrm_basis_labelSet"  useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
             <smartTable:customToolbar>
                 <m:OverflowToolbar design="Transparent"
                 >

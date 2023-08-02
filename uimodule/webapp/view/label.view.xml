@@ -1,142 +1,28 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
 	xmlns:m="sap.m"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	controllerName="iService_UI5.controller.label">
 
-	<m:Page title="{i18n>Overview}"
+	<m:Page title="{i18n>LabelOverview}"
 		class="sapUiContentPadding"
 		showHeader="false">
 		<m:content>
-			<m:OverflowToolbar>
-				<m:ToolbarSpacer />
-				<m:Button text="{i18n>newLabel}"
-					type="Accept"
-					press="onCreateLabel"
-					icon="sap-icon://add" />
-				<m:Button text="{i18n>updateLabel}"
-					press="onUpdateSelectedLabel"
-					icon="sap-icon://edit" />
-				<m:Button text="{i18n>deleteLabel}"
-					type="Reject"
-					press="onDeleteSelectedLabel"
-					icon="sap-icon://delete" />
-			</m:OverflowToolbar>
-			<m:Table id="labelTable"
-				headerText="{i18n>labelOverview}"
-				items="{
-				path:'/zcrm_label_map001Set'
-			}"
-				growing="true"
-				growingThreshold="15"
-				mode="SingleSelect">
-				<m:columns>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>Zlabel_id}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZProduct}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_MO_1}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_MO_2}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_MO_3}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_DI_1}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_DI_2}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_DI_3}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_MI_1}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_MI_2}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_MI_3}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_DO_1}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_DO_2}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_DO_3}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_FR_1}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_FR_2}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZUCC_EXPERT_FR_3}" />
-						</m:header>
-					</m:Column>
-					<!-- Add more columns as per your data structure here -->
-				</m:columns>
-				<m:ColumnListItem>
-					<m:Text text="{ZLABEL_ID}" />
-					<m:Text text="{ZPRODUCT}" />
-					<m:Text text="{ZUCC_EXPERT_MO_1}" />
-					<m:Text text="{ZUCC_EXPERT_MO_2}" />
-					<m:Text text="{ZUCC_EXPERT_MO_3}" />
-					<m:Text text="{ZUCC_EXPERT_DI_1}" />
-					<m:Text text="{ZUCC_EXPERT_DI_2}" />
-					<m:Text text="{ZUCC_EXPERT_DI_3}" />
-					<m:Text text="{ZUCC_EXPERT_MI_1}" />
-					<m:Text text="{ZUCC_EXPERT_MI_2}" />
-					<m:Text text="{ZUCC_EXPERT_MI_3}" />
-					<m:Text text="{ZUCC_EXPERT_DO_1}" />
-					<m:Text text="{ZUCC_EXPERT_DO_2}" />
-					<m:Text text="{ZUCC_EXPERT_DO_3}" />
-					<m:Text text="{ZUCC_EXPERT_FR_1}" />
-					<m:Text text="{ZUCC_EXPERT_FR_2}" />
-					<m:Text text="{ZUCC_EXPERT_FR_3}" />
-					<!-- Add more fields as per your data structure here -->
-				</m:ColumnListItem>
-			</m:Table>
+			<smartTable:SmartTable header="Applikations Produkte" tableType="ResponsiveTable"   showRowCount="true" initiallyVisibleFields="ZPRODUCT,ZUCC_EXPERT_MO_1" id="labelTable" requestAtLeastFields="ZLABEL_ID" ignoreFromPersonalisation="ZLABEL_ID, Mandt" entitySet="zcrm_label_map001Set"  useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+            <smartTable:customToolbar>
+                <m:OverflowToolbar design="Transparent"
+                >
+                    <m:ToolbarSpacer />
+                    <m:OverflowToolbarButton icon="sap-icon://add" press="onCreateLabel" />
+                    <m:OverflowToolbarButton icon="sap-icon://edit" press="onUpdateSelectedLabel" />
+                    <m:OverflowToolbarButton icon="sap-icon://delete" press="onDeleteSelectedLabel" />
+                </m:OverflowToolbar>
+            </smartTable:customToolbar>
+				<smartTable:layoutData>
+                    <m:FlexItemData growFactor="1" baseSize="0%" />
+                </smartTable:layoutData>
+			</smartTable:SmartTable>
 		</m:content>
 	</m:Page>
 </mvc:View>
