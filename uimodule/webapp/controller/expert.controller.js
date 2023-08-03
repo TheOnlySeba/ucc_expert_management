@@ -15,6 +15,7 @@ sap.ui.define([
                 "/model/applicationProperties.json"
             );
             var that = this;
+            var oTable;
 
             var oSettingsModel = new sap.ui.model.json.JSONModel();
             oSettingsModel.loadData(sPath);
@@ -26,11 +27,20 @@ sap.ui.define([
                     .getProperty("/oDataUrl");
                 var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
                 that.getView().setModel(oModel);
+                oTable = that.getView().byId("expertTable").getTable();
+                oTable.setMode("SingleSelect");
+                oTable.attachSelectionChange(that.onTableSelection(), this);
             });
 
         },
         geti18n: function (sKey) {
             return this.getView().getModel("i18n").getResourceBundle().getText(sKey);
+        },
+
+        onTableSelection: function () {
+            var that = this;
+            var aSelectedItems = that.getView().byId("expertTable").getTable().getSelectedItems();
+
         },
 
         onCreateExpert: function () {
@@ -112,151 +122,104 @@ sap.ui.define([
                 }
             });
         },
-        onCancelSave: function () {
+        onCancelCreate: function () {
             var that = this;
             that.byId("newExpertDialog").close();
-            MessageToast.show(this.geti18n("expertNotCreated"));
+        },
+
+        onCancelSave: function () {
+            // var that = this;
+            // that.byId("newExpertDialog").close();
+            // MessageToast.show(this.geti18n("expertNotCreated"));
+            this.oMultiEditDialog.close();
+            this.oMultiEditDialog.destroy();
+            this.oMultiEditDialog = null;
         },
 
         onUpdateSelectedExpert: function () {
+
+
             var that = this;
-            var oDateFormat = DateFormat.getDateInstance({ pattern: "dd.MM.yyyy" });
-            var cancelButton = new sap.m.Button({
-                text: that.geti18n("cancel"),
-                type: sap.m.ButtonType.Default,
-                press: function () {
-                    sap.ui.getCore().byId("updatePopup").destroy();
-                },
-            });
+            Fragment.load({
+                name: "iService_UI5.fragment.editExpert",
+                controller: this
+            }).then(function (oFragment) {
+                that.oMultiEditDialog = oFragment;
+                that.getView().addDependent(that.oMultiEditDialog);
 
-            var updateButton = new sap.m.Button({
-                text: that.geti18n("update"),
-                type: sap.m.ButtonType.Accept,
-                press: function () {
-                    var serviceURL = that
-                        .getView()
-                        .getModel("Experts")
-                        .getProperty("/oDataUrl");
-                    var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
+                that.oMultiEditDialog.setEscapeHandler(function () {
+                    that.onCloseDialog();
+                }.bind(this));
 
-                    var oUpdatedExpert = {
-                        zucc_expert: sap.ui.getCore().byId("updatezucc_expert").getValue(),
-                        mo: sap.ui.getCore().byId("updatemo").getSelected() ? 1 : 0,
-                        tu: sap.ui.getCore().byId("updatetu").getSelected() ? 1 : 0,
-                        we: sap.ui.getCore().byId("updatewe").getSelected() ? 1 : 0,
-                        th: sap.ui.getCore().byId("updateth").getSelected() ? 1 : 0,
-                        fr: sap.ui.getCore().byId("updatefr").getSelected() ? 1 : 0,
-                        valid_from: oDateFormat.parse(sap.ui.getCore().byId("updatevalid_from").getValue()),
-                        valid_to: oDateFormat.parse(sap.ui.getCore().byId("updatevalid_to").getValue()),
-                    };
+                that.oMultiEditDialog.getContent()[0].setContexts(that.getView().byId("expertTable").getTable().getSelectedContexts());
 
-                    var updateZuccExpert = sap.ui.getCore().byId("updatezucc_expert").getValue();
-                    var dPath = "/zcrm_expert_availabilitySet(zucc_expert='" + updateZuccExpert + "')";
-
-                    oModel.update(dPath, oUpdatedExpert, {
-                        success: function () {
-
-
-                            MessageToast.show("Successfully updated!");
-                            oModel.refresh();
-                            that.onClear();
-                            sap.ui.getCore().byId("updatePopup").destroy();
-                        },
-                        error: function (oError) {
-                            sap.m.MessageToast.show("Error during contract update");
-                        },
-                    });
-                },
-            });
-
-            if (that.getView().byId("expertTable").getSelectedItem() != null) {
-                var selectedItem = that
-                    .getView()
-                    .byId("expertTable")
-                    .getSelectedItem()
-                    .getBindingContext();
-
-                var oDialog = new sap.m.Dialog("updatePopup", {
-                    title: that.geti18n("updatePopupexpert"),
-                    modal: true,
-                    contentWidth: "4em",
-                    buttons: [updateButton, cancelButton],
-                    content: [
-                        new sap.m.Label({
-                            text: that.geti18n("zucc_expert"),
-                        }),
-                        new sap.m.Input({
-                            id: "updatezucc_expert",
-                            value: selectedItem.getProperty("zucc_expert"),
-                            editable: false,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Mo"),
-                        }),
-                        new sap.m.CheckBox({
-                            id: "updatemo",
-                            value: selectedItem.getProperty("mo"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Tu"),
-                        }),
-                        new sap.m.CheckBox({
-                            id: "updatetu",
-                            value: selectedItem.getProperty("tu"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("We"),
-                        }),
-                        new sap.m.CheckBox({
-                            id: "updatewe",
-                            value: selectedItem.getProperty("we"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Th"),
-                        }),
-                        new sap.m.CheckBox({
-                            id: "updateth",
-                            value: selectedItem.getProperty("th"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("Fr"),
-                        }),
-                        new sap.m.CheckBox({
-                            id: "updatefr",
-                            value: selectedItem.getProperty("fr"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("ValidFrom"),
-                        }),
-                        new sap.m.DatePicker({
-                            id: "updatevalid_from",
-                            value: selectedItem.getProperty("valid_from"),
-                            editable: true,
-                        }),
-                        new sap.m.Label({
-                            text: that.geti18n("ValidTo"),
-                        }),
-                        new sap.m.DatePicker({
-                            id: "updatevalid_to",
-                            value: selectedItem.getProperty("valid_to"),
-                            editable: true,
-                        }),
-
-                    ],
-                });
-            }
-            if (selectedItem != null) {
-                sap.ui.getCore().byId("updatePopup").open();
-            } else {
-                MessageToast.show(that.geti18n("errorSelectFirst"));
-                sap.ui.getCore().byId("updatePopup").destroy();
-            }
+                that.oMultiEditDialog.open();
+            }.bind(this));
         },
+
+        onDialogSaveButton: function () {
+            var oMultiEditContainer = this.oMultiEditDialog.getContent()[0];
+
+            this.oMultiEditDialog.setBusy(true);
+            oMultiEditContainer.getErroneousFieldsAndTokens().then(function (aErrorFields) {
+                this.oMultiEditDialog.setBusy(false);
+                if (aErrorFields.length === 0) {
+                    this._saveChanges();
+                }
+            }.bind(this)).catch(function () {
+                this.oMultiEditDialog.setBusy(false);
+            }.bind(this));
+        },
+        _saveChanges: function () {
+            var oMultiEditContainer = this.oMultiEditDialog.getContent()[0],
+                that = this,
+                aUpdatedContexts,
+                oContext,
+                oUpdatedData,
+                oObjectToUpdate,
+                oUpdatedDataCopy;
+
+            var fnHandler = function (oField) {
+                var sPropName = oField.getPropertyName(),
+                    sUomPropertyName = oField.getUnitOfMeasurePropertyName();
+                if (!oField.getApplyToEmptyOnly() || !oObjectToUpdate[sPropName]
+                    || (typeof oObjectToUpdate[sPropName] == "string" && !oObjectToUpdate[sPropName].trim())) {
+                    oUpdatedDataCopy[sPropName] = oUpdatedData[sPropName];
+                }
+                if (oField.isComposite()) {
+                    if (!oField.getApplyToEmptyOnly() || !oObjectToUpdate[sUomPropertyName]) {
+                        oUpdatedDataCopy[sUomPropertyName] = oUpdatedData[sUomPropertyName];
+                    }
+                }
+            };
+
+            MessageToast.show("Save action started", {
+                onClose: function () {
+                    oMultiEditContainer.getAllUpdatedContexts(true).then(function (result) {
+                        MessageToast.show("Updated contexts available", {
+                            onClose: function () {
+                                aUpdatedContexts = result;
+                                for (var i = 0; i < aUpdatedContexts.length; i++) {
+                                    oContext = aUpdatedContexts[i].context;
+                                    oUpdatedData = aUpdatedContexts[i].data;
+                                    oObjectToUpdate = oContext.getModel().getObject(oContext.getPath());
+                                    oUpdatedDataCopy = {};
+                                    this._getFields().filter(function (oField) {
+                                        return !oField.isKeepExistingSelected();
+                                    }).forEach(fnHandler);
+                                    oContext.getModel().update(oContext.getPath(), oUpdatedDataCopy);
+                                }
+                                MessageToast.show("Model was updated");
+
+                                that.onCancelSave();
+                            }.bind(this)
+                        });
+                    }.bind(oMultiEditContainer));
+                }
+            });
+            this.oMultiEditDialog.close();
+        },
+
 
         onDeleteSelectedExpert: function () {
             var that = this;
@@ -334,6 +297,73 @@ sap.ui.define([
             var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
             this.getView().byId("expertTable").setModel(oModel);
         },
+
+        onDeleteSelectedExpert: function () {
+            var that = this;
+            Fragment.load({
+                name: "iService_UI5.fragment.deleteExpert",
+                controller: this
+            }).then(function (oFragment) {
+                that.oMultiDeleteDialog = oFragment;
+                that.getView().addDependent(that.oMultiDeleteDialog);
+
+                that.oMultiDeleteDialog.setEscapeHandler(function () {
+                    that.onCloseDialog();
+                }.bind(this));
+
+                that.oMultiDeleteDialog.getContent()[0].setContexts(that.getView().byId("expertTable").getTable().getSelectedContexts());
+
+                that.oMultiDeleteDialog.open();
+            }.bind(this));
+        },
+
+        onDialogDeleteButton: function () {
+            var oMultiDeleteContainer = this.oMultiDeleteDialog.getContent()[0];
+
+            this.oMultiDeleteDialog.setBusy(true);
+            oMultiDeleteContainer.getErroneousFieldsAndTokens().then(function (aErrorFields) {
+                this.oMultiDeleteDialog.setBusy(false);
+                if (aErrorFields.length === 0) {
+                    this._delete();
+                }
+            }.bind(this)).catch(function () {
+                this.oMultiDeleteDialog.setBusy(false);
+            }.bind(this));
+        },
+        _delete: function () {
+            var oMultiDeleteContainer = this.oMultiDeleteDialog.getContent()[0],
+                that = this,
+                aDeleteContexts,
+                oContext;
+            MessageToast.show("Delete action started", {
+                onClose: function () {
+                    oMultiDeleteContainer.getAllUpdatedContexts(true).then(function (result) {
+                        MessageToast.show("Delete contexts available", {
+                            onClose: function () {
+                                aDeleteContexts = result;
+                                for (var i = 0; i < aDeleteContexts.length; i++) {
+                                    oContext = aDeleteContexts[i].context;
+
+                                    oContext.getModel().remove(oContext.getPath());
+                                }
+                                MessageToast.show("Model was updated");
+
+                                that.onCancelDelete();
+                            }.bind(this)
+                        });
+                    }.bind(oMultiDeleteContainer));
+                }
+            });
+            this.oMultiDeleteDialog.close();
+
+        },
+
+        onCancelDelete: function () {
+            this.oMultiDeleteDialog.close();
+            this.oMultiDeleteDialog.destroy();
+            this.oMultiDeleteDialog = null;
+        },
+
     });
 }
 );

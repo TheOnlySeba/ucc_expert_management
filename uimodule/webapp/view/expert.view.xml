@@ -1,88 +1,28 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
 	xmlns:m="sap.m"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	controllerName="iService_UI5.controller.expert">
 
-	<m:Page title="{i18n>Overview}"
+	<m:Page title="{i18n>ExpertOverview}"
 		class="sapUiContentPadding"
 		showHeader="false">
 		<m:content>
-			<m:OverflowToolbar>
-				<m:ToolbarSpacer />
-				<m:Button text="{i18n>newExpert}"
-					type="Accept"
-					press="onCreateExpert"
-					icon="sap-icon://add" />
-				<m:Button text="{i18n>updateExpert}"
-					press="onUpdateSelectedExpert"
-					icon="sap-icon://edit" />
-				<m:Button text="{i18n>deleteExpert}"
-					type="Reject"
-					press="onDeleteSelectedExpert"
-					icon="sap-icon://delete" />
-			</m:OverflowToolbar>
-			<m:Table id="expertTable"
-				headerText="{i18n>expertOverview}"
-				items="{
-				path:'/zcrm_expert_availabilitySet'
-			}"
-				growing="true"
-				growingThreshold="15"
-				mode="SingleSelect">
-				<m:columns>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ZuccExpert}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>Mo}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>Di}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>Mi}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>Do}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>Fr}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ValidFrom}" />
-						</m:header>
-					</m:Column>
-					<m:Column mergeDuplicates="true">
-						<m:header>
-							<m:Text text="{i18n>ValidUntil}" />
-						</m:header>
-					</m:Column>
-					<!-- Add more columns as per your data structure here -->
-				</m:columns>
-				<m:ColumnListItem>
-					<m:Text text="{zucc_expert}" />
-					<m:Text text="{mo}" />
-					<m:Text text="{tu}" />
-					<m:Text text="{we}" />
-					<m:Text text="{th}" />
-					<m:Text text="{fr}" />
-					<m:Text text="{valid_from}" />
-					<m:Text text="{valid_to}" />
-					<!-- Add more fields as per your data structure here -->
-				</m:ColumnListItem>
-			</m:Table>
+			<smartTable:SmartTable header="Verfügbarkeit der UCC Mitarbeiter" tableType="ResponsiveTable" initiallyVisibleFields="zucc_expert,mo,tu,we,th,fr,valid_from,valid_to"   showRowCount="true"  id="expertTable" requestAtLeastFields="zucc_expert" ignoreFromPersonalisation="Mandt" entitySet="zcrm_expert_availabilitySet"  useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+            <smartTable:customToolbar>
+                <m:OverflowToolbar design="Transparent"
+                >
+                    <m:ToolbarSpacer />
+                    <m:OverflowToolbarButton icon="sap-icon://add" press="onCreateExpert" />
+                    <m:OverflowToolbarButton icon="sap-icon://edit" press="onUpdateSelectedExpert" />
+                    <m:OverflowToolbarButton icon="sap-icon://delete" press="onDeleteSelectedExpert" />
+                </m:OverflowToolbar>
+            </smartTable:customToolbar>
+				<smartTable:layoutData>
+                    <m:FlexItemData growFactor="1" baseSize="0%" />
+                </smartTable:layoutData>
+			</smartTable:SmartTable>
 		</m:content>
 	</m:Page>
 </mvc:View>
