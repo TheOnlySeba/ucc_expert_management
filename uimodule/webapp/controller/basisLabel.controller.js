@@ -29,7 +29,7 @@ sap.ui.define([
                 var oModel = new sap.ui.model.odata.v2.ODataModel(serviceURL);
                 that.getView().setModel(oModel);
                 oTable = that.getView().byId("basisLabelTable").getTable();
-                oTable.setMode("MultiSelect");
+                oTable.setMode("SingleSelect");
                 oTable.attachSelectionChange(that.onTableSelection(), this);
 
 
