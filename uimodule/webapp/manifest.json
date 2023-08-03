@@ -44,6 +44,12 @@
         "uri": "model/basisLabelCreate.json",
         "preload": true,
         "settings": {}
+      },
+      "contLabelCreate":{
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/contLabelCreate.json",
+        "preload": true,
+        "settings": {}
       }
     },
     "routing": {
@@ -91,6 +97,16 @@
           "pattern": "basisLabel",
           "name":"basisLabel",
           "target":"basisLabel"
+        },
+        {
+          "pattern": "createContLabel",
+          "name": "createContLabel",
+          "target":"createContLabel"
+        },
+        {
+          "pattern": "contLabel",
+          "name": "contLabel",
+          "target": "contLabel"
         }
         
       
@@ -137,6 +153,18 @@
             "viewName": "basisLabel",
             "controlId": "app",
             "viewLevel": 1
+        },
+        "createContLabel": {
+          "viewId":"createContLabel",
+          "viewName": "createContLabel",
+          "controlId": "app",
+          "viewLevel": 2
+        },
+        "contLabel": {
+          "viewId":"contLabel",
+          "viewName": "contLabel",
+          "controlId": "app",
+          "viewLevel": 1
         }
       }
     }

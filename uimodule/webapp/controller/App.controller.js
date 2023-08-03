@@ -104,6 +104,10 @@ sap.ui.define([
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("basisLabel");
 		},
+		navigateToContLabelView: function () {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("contLabel");
+		},
 
 
 	});

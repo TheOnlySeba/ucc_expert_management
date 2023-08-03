@@ -21,6 +21,11 @@
 					text="{i18n>toBasisLabel}"
 					press="navigateToBasisLabelView"
 					 />
+				<Button icon="sap-icon://customer"
+					type="Ghost"
+					text="{i18n>toContLabel}"
+					press="navigateToContLabelView"
+					 />
 				<ToolbarSpacer/>
 				<MenuButton text="{i18n>language}"
 					type="Ghost"
