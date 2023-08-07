@@ -30,6 +30,15 @@ sap.ui.define([
                 oTable = that.getView().byId("expertTable").getTable();
                 oTable.setMode("SingleSelect");
                 oTable.attachSelectionChange(that.onTableSelection(), this);
+                var aItems = that.getView().byId("expertTable").getTable().getItems();
+                console.log(aItems);
+
+                aItems.forEach(function (oItem) {
+                    var oCell = oItem.getCells()[0];
+                    console.log(oItem.getCells()[0]);
+                    var oValue = oCell.getText();
+                    oCell.setTex(this.availabilityFormatter(oValue));
+                }, this);
             });
 
         },
@@ -362,6 +371,10 @@ sap.ui.define([
             this.oMultiDeleteDialog.close();
             this.oMultiDeleteDialog.destroy();
             this.oMultiDeleteDialog = null;
+        },
+
+        availabilityFormatter: function (sValue) {
+            return sValue === 1 ? "Available" : "Not Available";
         },
 
     });
