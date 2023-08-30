@@ -1,6 +1,6 @@
 specVersion: "2.2"
 metadata:
-  name: z_solman_v3
+  name: z_ucc_expertmanagement
 type: application
 resources:
   configuration:
