@@ -1,0 +1,28 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	controllerName="iService_UI5.controller.expert">
+
+	<m:Page title="{i18n>ExpertOverview}"
+		class="sapUiContentPadding"
+		showHeader="false">
+		<m:content>
+			<smartTable:SmartTable header="Verfügbarkeit der UCC Mitarbeiter" tableType="ResponsiveTable" initiallyVisibleFields="zucc_expert,mo,tu,we,th,fr,valid_from,valid_to"   showRowCount="true"  id="expertTable" requestAtLeastFields="zucc_expert" ignoreFromPersonalisation="Mandt" entitySet="zcrm_expert_availabilitySet"  useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+            <smartTable:customToolbar>
+                <m:OverflowToolbar design="Transparent"
+                >
+                    <m:ToolbarSpacer />
+                    <m:OverflowToolbarButton icon="sap-icon://add" press="onCreateExpert" />
+                    <m:OverflowToolbarButton icon="sap-icon://edit" press="onUpdateSelectedExpert" />
+                    <m:OverflowToolbarButton icon="sap-icon://delete" press="onDeleteSelectedExpert" />
+                </m:OverflowToolbar>
+            </smartTable:customToolbar>
+				<smartTable:layoutData>
+                    <m:FlexItemData growFactor="1" baseSize="0%" />
+                </smartTable:layoutData>
+			</smartTable:SmartTable>
+		</m:content>
+	</m:Page>
+</mvc:View>

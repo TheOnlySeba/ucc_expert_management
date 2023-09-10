@@ -1,0 +1,114 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:sf="sap.ui.comp.smartform"
+		xmlns:smartField="sap.ui.comp.smartfield"
+		xmlns:core="sap.ui.core"
+		xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+		xmlns:smartmultiedit="sap.ui.comp.smartmultiedit">
+	<Dialog
+			title="Edit Multiple"
+			class="sapUiContentPadding"
+			stretchOnPhone="true"
+			id="multipleEditingDialog"
+			contentWidth="40rem"
+			horizontalScrolling="false">
+		<content>
+			<smartmultiedit:Container entitySet="zcrm_basis_labelSet" id="multiEditContainer"
+									  app:defaultDropDownDisplayBehaviour="descriptionOnly">
+				<smartmultiedit:customData>
+					<core:CustomData key="ZLABEL_ID" value=''/>
+				</smartmultiedit:customData>
+				<smartmultiedit:layout>
+					<sf:SmartForm editable="true" ignoredFields="ZLABEL_ID,ZPRODUCT">
+						<sf:layout>
+							<sf:Layout labelSpanM="12" labelSpanL="12" labelSpanXL="12" />
+						</sf:layout>
+						<sf:groups>
+							<sf:Group>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MO_1" useApplyToEmptyOnly="true"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MO_2"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MO_3"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DI_1"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DI_2"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DI_3"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MI_1"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MI_2"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_MI_3"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DO_1"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DO_2"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_DO_3"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_FR_1"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_FR_2"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="ZUCC_EXPERT_FR_3"/>
+									</sf:elements>
+								</sf:GroupElement>
+							</sf:Group>
+						</sf:groups>
+					</sf:SmartForm>
+				</smartmultiedit:layout>
+			</smartmultiedit:Container>
+		</content>
+		<buttons>
+			<Button text="Save" press="onDialogSaveButton" type="Emphasized"/>
+			<Button text="Cancel" press="onCancelSave"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

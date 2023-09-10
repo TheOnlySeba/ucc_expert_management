@@ -12,7 +12,8 @@
     "rootView": {
       "viewName": "iService_UI5.view.main",
       "type": "XML",
-      "async": true
+      "async": true,
+      "id": "app"
     },
     "models": {
       "Settings": {
@@ -26,23 +27,29 @@
           "bundleName": "iService_UI5.i18n.i18n"
         }
       },
-      "allocationCreate": {
+      "expertCreate": {
           "type": "sap.ui.model.json.JSONModel",
-          "uri": "model/allocationCreate.json",
+          "uri": "model/expertCreate.json",
           "preload": true,
           "settings": {}
       },
-      "columnsModel": {
-          "type": "sap.ui.model.json.JSONModel",
-          "uri": "model/columnsModel.json",
-          "preload": true,
-          "settings": {}
-      },
-      "contractCreate": {
+      "labelCreate": {
         "type": "sap.ui.model.json.JSONModel",
-        "uri": "model/contractCreate.json",
+        "uri": "model/labelCreate.json",
         "preload":true,
         "settings":{}
+      },
+      "basisLabelCreate": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/basisLabelCreate.json",
+        "preload": true,
+        "settings": {}
+      },
+      "contLabelCreate":{
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/contLabelCreate.json",
+        "preload": true,
+        "settings": {}
       }
     },
     "routing": {
@@ -51,111 +58,113 @@
         "controlAggregation": "pages",
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
+        "controlId": "app",
         "transition": "slide",
         "async": true
       },
       "routes": [
         {
           "pattern": "",
-          "name": "home",
-          "target": "home"
+          "name": "app",
+          "target": "app"
         },
         {
-          "pattern": "customer/{customerId}",
-          "name": "customer",
-          "target": "customer"
+          "pattern": "expert",
+          "name": "expert",
+          "target": "expert"
         },
         {
-          "pattern": "createCustomer",
-          "name": "createCustomer",
-          "target": "createCustomer"
+          "pattern": "createExpert",
+          "name": "createExpert",
+          "target": "createExpert"
         },
         {
-          "pattern": "systemAllocation",
-          "name": "systemAllocation",
-          "target": "systemAllocation"
+          "pattern": "label",
+          "name": "label",
+          "target":"label"
         },
         {
-          "pattern": "productOverview",
-          "name": "productOverview",
-          "target": "productOverview"
+          "pattern": "createLabel",
+          "name":"createLabel",
+          "target":"createLabel"
         },
         {
-          "pattern": "productOptions",
-          "name": "productOptions",
-          "target": "productOptions"
+          "pattern": "createBasisLabel",
+          "name":"createBasisLabel",
+          "target":"createBasisLabel"
         },
         {
-          "pattern": "customer/{customerId}/user/{userId}",
-          "name": "user",
-          "target": "user"
+          "pattern": "basisLabel",
+          "name":"basisLabel",
+          "target":"basisLabel"
         },
         {
-          "pattern": "customer/{customerId}/createUser",
-          "name": "createUser",
-          "target": "createUser"
+          "pattern": "createContLabel",
+          "name": "createContLabel",
+          "target":"createContLabel"
         },
         {
-          "pattern":"contractAllocation",
-          "name": "contractAllocation",
-          "target": "contractAllocation"
+          "pattern": "contLabel",
+          "name": "contLabel",
+          "target": "contLabel"
         }
-
+        
+      
       ],
       "targets": {
-        "home": {
-          "viewId": "main",
+        "app": {
+          "viewId": "app",
           "viewName": "main",
           "controlId": "app",
           "viewLevel": 1
         },
-        "customer": {
-          "viewId": "customer",
-          "viewName": "customer",
+        "expert": {
+          "viewId": "expert",
+          "viewName": "expert",
+          "controlId": "app",
+          "viewLevel": 1
+        },
+        "createExpert": {
+          "viewId": "createExpert",
+          "viewName": "createExpert",
           "controlId": "app",
           "viewLevel": 2
         },
-        "createCustomer": {
-          "viewId": "createCustomer",
-          "viewName": "createCustomer",
+        "label": {
+          "viewId": "label",
+          "viewName": "label",
+          "controlId": "app",
+          "viewLevel": 1
+        },
+        "createLabel": {
+            "viewId": "createLabel",
+            "viewName": "createLabel",
+            "controlId": "app",
+            "viewLevel": 2
+        },
+        "createBasisLabel": {
+            "viewId": "createBasisLabel",
+            "viewName": "createBasisLabel",
+            "controlId": "app",
+            "viewLevel": 2
+        },
+        "basisLabel": {
+            "viewId": "basisLabel",
+            "viewName": "basisLabel",
+            "controlId": "app",
+            "viewLevel": 1
+        },
+        "createContLabel": {
+          "viewId":"createContLabel",
+          "viewName": "createContLabel",
           "controlId": "app",
           "viewLevel": 2
         },
-        "user": {
-          "viewId": "user",
-          "viewName": "user",
+        "contLabel": {
+          "viewId":"contLabel",
+          "viewName": "contLabel",
           "controlId": "app",
-          "viewLevel": 3
-        },
-        "createUser": {
-          "viewId": "createUser",
-          "viewName": "createUser",
-          "controlId": "app",
-          "viewLevel": 3
-        },
-        "systemAllocation": {
-          "viewId": "systemAllocation",
-          "viewName": "systemAllocation",
-          "controlId": "app",
-          "viewLevel": 2
-        },
-        "productOverview": {
-          "viewId": "productOverview",
-          "viewName": "productOverview",
-          "controlId": "app",
-          "viewLevel": 2
-        },
-        "productOptions": {
-          "viewId": "productOptions",
-          "viewName": "productOptions",
-          "controlId": "app",
-          "viewLevel": 2
-        },
-        "contractAllocation": {
-          "viewId": "contractAllocation",
-          "viewName":"contractAllocation",
-          "controlId": "app",
-          "viewLevel":2
+          "viewLevel": 1
         }
       }
     }

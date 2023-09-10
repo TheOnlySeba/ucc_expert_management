@@ -1,0 +1,28 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	controllerName="iService_UI5.controller.label">
+
+	<m:Page title="{i18n>LabelOverview}"
+		class="sapUiContentPadding"
+		showHeader="false">
+		<m:content>
+			<smartTable:SmartTable header="Applikations Produkte" tableType="ResponsiveTable"   showRowCount="true" initiallyVisibleFields="ZPRODUCT,ZUCC_EXPERT_MO_1" id="labelTable" requestAtLeastFields="ZLABEL_ID" ignoreFromPersonalisation="ZLABEL_ID, Mandt" entitySet="zcrm_label_map001Set"  useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+            <smartTable:customToolbar>
+                <m:OverflowToolbar design="Transparent"
+                >
+                    <m:ToolbarSpacer />
+                    <m:OverflowToolbarButton icon="sap-icon://add" press="onCreateLabel" />
+                    <m:OverflowToolbarButton icon="sap-icon://edit" press="onUpdateSelectedLabel" />
+                    <m:OverflowToolbarButton icon="sap-icon://delete" press="onDeleteSelectedLabel" />
+                </m:OverflowToolbar>
+            </smartTable:customToolbar>
+				<smartTable:layoutData>
+                    <m:FlexItemData growFactor="1" baseSize="0%" />
+                </smartTable:layoutData>
+			</smartTable:SmartTable>
+		</m:content>
+	</m:Page>
+</mvc:View>

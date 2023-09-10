@@ -14,17 +14,17 @@
     "build:uimodule": "ui5 build --config=uimodule/ui5.yaml --clean-dest --dest dist/uimodule"
   },
   "devDependencies": {
-    "shx": "^0.3.3",
-    "@ui5/cli": "^2.8.1",
-    "ui5-middleware-livereload": "^0.5.1",
+    "@ui5/cli": "^2.14.19",
+    "eslint": "^7.18.0",
     "karma": "^6.0.1",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^2.0.3",
     "karma-ui5": "^2.3.2",
     "npm-run-all": "^4.1.5",
-    "eslint": "^7.18.0",
-    "ui5-task-nwabap-deployer": "*",
-    "ui5-middleware-route-proxy": "*"
+    "shx": "^0.3.3",
+    "ui5-middleware-livereload": "^0.5.1",
+    "ui5-middleware-route-proxy": "*",
+    "ui5-task-nwabap-deployer": "*"
   },
   "ui5": {
     "dependencies": [
@@ -32,5 +32,9 @@
       "ui5-task-nwabap-deployer",
       "ui5-middleware-route-proxy"
     ]
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "env": "^0.0.2"
   }
 }

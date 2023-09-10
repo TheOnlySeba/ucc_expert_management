@@ -1,0 +1,23 @@
+{
+    "ContLabel":{
+        "ZLABEL_ID":"",
+        "ZPRODUCT":"",
+        "ZUCC_EXPERT_MO_1":"",
+        "ZUCC_EXPERT_MO_2":"",
+        "ZUCC_EXPERT_MO_3":"",
+        "ZUCC_EXPERT_DI_1":"",
+        "ZUCC_EXPERT_DI_2":"",
+        "ZUCC_EXPERT_DI_3":"",
+        "ZUCC_EXPERT_MI_1":"",
+        "ZUCC_EXPERT_MI_2":"",
+        "ZUCC_EXPERT_MI_3":"",
+        "ZUCC_EXPERT_DO_1":"",
+        "ZUCC_EXPERT_DO_2":"",
+        "ZUCC_EXPERT_DO_3":"",
+        "ZUCC_EXPERT_FR_1":"",
+        "ZUCC_EXPERT_FR_2":"",
+        "ZUCC_EXPERT_FR_3":""
+
+
+    }
+}
