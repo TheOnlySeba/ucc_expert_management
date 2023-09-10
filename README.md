@@ -1,7 +1,4 @@
-# ababLab
+# UCC Employee Management Platform
 
-Insert the purpose of this project and some interesting infos here
-
-## Credits
-
-This project has been generated with 💙 and [easy-ui5](https://github.com/SAP)
+Before Start Items: - npm install
+Start Items: - npm start
