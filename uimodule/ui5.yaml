@@ -31,10 +31,7 @@ server:
         /sap/opu/odata/sap/:
           target: http://z04lp1.informatik.tu-muenchen.de:8004/
           auth:
-            fromEnv: false
-            user: "Awesome-User"
-            pass: "Awesome-PW"
-            client: 101
+            fromEnv: true
 builder:
   customTasks:
     - name: ui5-task-nwabap-deployer
@@ -47,8 +44,7 @@ builder:
           server: http://z04lp1.informatik.tu-muenchen.de:8004/
           client: 101
         authentication:
-          user: "Awesome-User"
-          password: "Awesome-PW"
+          fromEnv: true
         ui5:
           language: EN
           package: Z04_101_SEME_INTEGRATION
