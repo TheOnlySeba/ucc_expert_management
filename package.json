@@ -32,5 +32,8 @@
       "ui5-task-nwabap-deployer",
       "ui5-middleware-route-proxy"
     ]
+  },
+  "dependencies": {
+    "env": "^0.0.2"
   }
 }
