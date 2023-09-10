@@ -51,7 +51,7 @@ builder:
           password: "Awesome-PW"
         ui5:
           language: EN
-          package: Z_ISERVICES_V3
+          package: Z04_101_SEME_INTEGRATION
           bspContainer: Z_SOLMAN_V3
           bspContainerText: x
           transportNo: Z04K900693
